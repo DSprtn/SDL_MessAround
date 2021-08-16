@@ -62,20 +62,10 @@ void Engine::HandleEvents()
 		case SDL_QUIT:
 			IsRunning = false;
 			break;
-		case SDL_KEYDOWN:
-		case SDL_KEYUP:
-			HandleInput(sdlEvent);
-			break;
 		default:
 			break;
 		}
 	}
-
-
-	
-}
-
-void Engine::HandleInput(const SDL_Event& sdlEvent) {
 
 }
 

@@ -20,8 +20,5 @@ class Engine
 		void Update();
 		void OnRender();
 		void HandleEvents();
-
-	private:
-		void HandleInput(const SDL_Event& event);
 };
 
