@@ -2,17 +2,17 @@
 #include <InputManager.h>
 #include <Timer.h>
 
-SimpleKBMoveComponent::SimpleKBMoveComponent(Entity* owner, float speed) : Component(owner)
+SimpleMove::SimpleMove(Entity* owner, float speed) : Component(owner)
 {
 	Speed = speed;
 	m_transform = owner->GetComponent<TransformComponent>();
 }
 
-SimpleKBMoveComponent::~SimpleKBMoveComponent()
+SimpleMove::~SimpleMove()
 {
 }
 
-void SimpleKBMoveComponent::Update()
+void SimpleMove::Update()
 {
 	InputManager* inputMgr = InputManager::GetInstance();
 	float delta = Timer::DeltaTime;
@@ -29,14 +29,14 @@ void SimpleKBMoveComponent::Update()
 	m_transform->PositionX += xMovement * delta * Speed;
 }
 
-void SimpleKBMoveComponent::LateUpdate()
+void SimpleMove::LateUpdate()
 {
 }
 
-void SimpleKBMoveComponent::Start()
+void SimpleMove::Start()
 {
 }
 
-void SimpleKBMoveComponent::OnRender()
+void SimpleMove::OnRender()
 {
 }

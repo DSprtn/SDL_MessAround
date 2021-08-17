@@ -2,12 +2,12 @@
 #include <ECS\Component.h>
 #include <TransformComponent.h>
 
-class SimpleKBMoveComponent : public Component
+class SimpleMove : public Component
 {
 	public:
 
-		SimpleKBMoveComponent(Entity* owner, float speed);
-		virtual ~SimpleKBMoveComponent();
+		SimpleMove(Entity* owner, float speed);
+		virtual ~SimpleMove();
 
 
 		float Speed = 10;

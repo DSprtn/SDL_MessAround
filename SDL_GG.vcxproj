@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Entities\BulletEntity.cpp" />
     <ClCompile Include="Source\Components\Collider.cpp" />
     <ClCompile Include="Source\Core\PhysicsSystem.cpp" />
     <ClCompile Include="Source\Util\MathHelper.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Source\Util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Entities\BulletEntity.h" />
     <ClInclude Include="Source\Components\Collider.h" />
     <ClInclude Include="Source\Core\PhysicsSystem.h" />
     <ClInclude Include="Source\Util\MathHelper.h" />

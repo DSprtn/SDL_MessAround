@@ -11,7 +11,7 @@ class Entity
 {
 	public:
 		Entity(std::string Name);
-		~Entity();
+		virtual ~Entity();
 
 		bool MarkedForDeletion;
 		std::string Name;
