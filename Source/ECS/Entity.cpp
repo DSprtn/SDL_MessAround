@@ -7,7 +7,6 @@ Entity::Entity(std::string name)
 {
 	Name = name;
 	MarkedForDeletion = false;
-	this->AddComponent<TransformComponent>(this);
 }
 
 Entity::~Entity()
@@ -19,6 +18,13 @@ void Entity::Update()
 {
 	for (Component* component : Components) {
 		component->Update();
+	}
+}
+
+void Entity::LateUpdate()
+{
+	for (Component* component : Components) {
+		component->LateUpdate();
 	}
 }
 

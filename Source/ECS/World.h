@@ -12,6 +12,7 @@ class World
 		std::vector<Entity*> Entities;
 
 		void Update();
+		void LateUpdate();
 		void OnRender();
 
 		template <typename T, class... Args>

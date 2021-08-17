@@ -23,6 +23,14 @@ void World::Update()
 	}
 }
 
+void World::LateUpdate()
+{
+	for (int i = 0; i < Entities.size(); i++) {
+		Entities[i]->LateUpdate();
+	}
+}
+
+
 void World::OnRender()
 {
 	for (Entity* entity : Entities) {

@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Util\MathHelper.cpp" />
+    <ClCompile Include="Source\Components\ConstrainToWindow.cpp" />
+    <ClCompile Include="Source\Entities\PlayerEntity.cpp" />
     <ClCompile Include="Source\Components\SimpleMove.cpp" />
     <ClCompile Include="Source\Components\RenderComponent.cpp" />
     <ClCompile Include="Source\Core\InputManager.cpp" />
@@ -156,6 +159,9 @@
     <ClCompile Include="Source\Util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Util\MathHelper.h" />
+    <ClInclude Include="Source\Components\ConstrainToWindow.h" />
+    <ClInclude Include="Source\Entities\PlayerEntity.h" />
     <ClInclude Include="Source\Components\SimpleMove.h" />
     <ClInclude Include="Source\Components\RenderComponent.h" />
     <ClInclude Include="Source\Core\InputManager.h" />

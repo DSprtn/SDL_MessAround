@@ -7,14 +7,14 @@
 class RenderComponent : public Component
 {
 	public:
-		RenderComponent(Entity* owner, SDL_Renderer* renderer, std::string TexturePath, int sizeX, int sizeY);
+		RenderComponent(Entity* owner, SDL_Renderer* renderer, std::string TexturePath);
 		~RenderComponent();
-
-		SDL_Rect DestRect;
 
 		void OnRender() override;
 		void Update() override;
+		void LateUpdate() override;
 		void Start() override;
+		
 
 	private:
 		SDL_Texture* m_Texture;

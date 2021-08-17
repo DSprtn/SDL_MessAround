@@ -12,9 +12,10 @@ class SimpleKBMoveComponent : public Component
 
 		float Speed = 10;
 
-		virtual void Update() override;
-		virtual void Start() override;
-		virtual void OnRender() override;
+		void Update() override;
+		void LateUpdate() override;
+		void Start() override;
+		void OnRender() override;
 
 	private:
 		TransformComponent* m_transform;

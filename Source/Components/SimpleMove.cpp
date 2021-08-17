@@ -29,6 +29,10 @@ void SimpleKBMoveComponent::Update()
 	m_transform->PositionX += xMovement * delta * Speed;
 }
 
+void SimpleKBMoveComponent::LateUpdate()
+{
+}
+
 void SimpleKBMoveComponent::Start()
 {
 }

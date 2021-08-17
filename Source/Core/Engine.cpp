@@ -14,6 +14,12 @@ Engine::~Engine() {
 	Shutdown();
 }
 
+Engine* Engine::Instance = nullptr;
+
+Engine* Engine::GetInstance() {
+	return Instance;
+}
+
 void Engine::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -24,6 +30,7 @@ void Engine::Init()
 
 		SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 		IsRunning = true;
+		Instance = this;
 	}
 }
 
@@ -39,6 +46,13 @@ void Engine::Update()
 {
 	if (CurrentWorld != nullptr) {
 		CurrentWorld->Update();
+	}
+}
+
+void Engine::LateUpdate()
+{
+	if (CurrentWorld != nullptr) {
+		CurrentWorld->LateUpdate();
 	}
 }
 

@@ -8,6 +8,7 @@
 #include <Util/Timer.h>
 #include <Core/InputManager.h>
 #include <SimpleMove.h>
+#include <Entities\PlayerEntity.h>
 
 
 
@@ -17,12 +18,7 @@ int main(int argc, char* args[]) {
 
 	InputManager* inputMgr = InputManager::GetInstance();
 
-	Entity* Player = engine.CurrentWorld->CreateEntity<Entity>("Player");
-
-	Player->AddComponent<RenderComponent>(Player, engine.Renderer, ".\\.\\Assets\\ship.png", 64, 64);
-	Player->AddComponent<SimpleKBMoveComponent>(Player, 400);
-	Player->GetComponent<TransformComponent>()->SetPosition(640, 550);
-
+	Entity* Player = engine.CurrentWorld->CreateEntity<PlayerEntity>("Player");
 
 	Uint32 now = SDL_GetTicks();
 	Uint32 last = 0;
@@ -36,6 +32,7 @@ int main(int argc, char* args[]) {
 		engine.HandleEvents();
 		inputMgr->Update();
 		engine.Update();
+		engine.LateUpdate();
 		engine.OnRender();
 	}
 	return 0;

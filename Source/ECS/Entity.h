@@ -17,9 +17,10 @@ class Entity
 		std::string Name;
 		std::vector<Component*> Components;
 
-		void Update();
-		void OnRender();
-		void Delete();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void OnRender();
+		virtual void Delete();
 
 		template<typename T>
 		T* GetComponent()

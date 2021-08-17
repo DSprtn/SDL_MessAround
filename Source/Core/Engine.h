@@ -5,9 +5,14 @@
 
 class Engine
 {
+	private:
+		static Engine* Instance;
+
 	public:
 		Engine();
 		~Engine();
+
+		static Engine* GetInstance();
 
 		SDL_Window* Window;
 		SDL_Renderer* Renderer;
@@ -18,6 +23,7 @@ class Engine
 		void Init();
 		void Shutdown();
 		void Update();
+		void LateUpdate();
 		void OnRender();
 		void HandleEvents();
 };
