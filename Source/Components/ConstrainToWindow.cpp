@@ -34,7 +34,3 @@ void ConstrainToWindow::LateUpdate()
 	m_transform->PositionX = MathHelper::Clamp(m_transform->PositionX, minX, maxX);
 	m_transform->PositionY = MathHelper::Clamp(m_transform->PositionY, minY, maxY);
 }
-
-void ConstrainToWindow::Start()
-{
-}

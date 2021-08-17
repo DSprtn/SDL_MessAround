@@ -21,6 +21,7 @@ class Entity
 		virtual void LateUpdate();
 		virtual void OnRender();
 		virtual void Delete();
+		virtual void OnCollide(Entity* B);
 
 		template<typename T>
 		T* GetComponent()

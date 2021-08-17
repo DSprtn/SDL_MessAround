@@ -10,13 +10,13 @@ class Component
 		virtual ~Component();
 		Component(Entity* Owner);
 
-		
-		virtual void Update() = 0;
-		virtual void LateUpdate() = 0;
-		virtual void Start() = 0;
-		virtual void OnRender() = 0;
 
-	protected:
+		virtual void Update() = 0;
+		virtual void LateUpdate() {};
+		virtual void Start() {};
+		virtual void OnRender() {};
+		virtual void OnCollide(Entity* B) {};
+
 		Entity* m_Owner;
 
 	private:

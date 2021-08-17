@@ -5,14 +5,11 @@
 
 class Engine
 {
-	private:
-		static Engine* Instance;
-
 	public:
 		Engine();
 		~Engine();
 
-		static Engine* GetInstance();
+		static Engine* Instance;
 
 		SDL_Window* Window;
 		SDL_Renderer* Renderer;

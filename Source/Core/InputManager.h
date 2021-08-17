@@ -14,8 +14,6 @@ public:
 	bool KeyDown(SDL_Scancode scanCode);
 	void Update();
 
-private:
-
 	InputManager();
 	~InputManager();
 };

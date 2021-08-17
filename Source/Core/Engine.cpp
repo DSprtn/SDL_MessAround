@@ -16,10 +16,6 @@ Engine::~Engine() {
 
 Engine* Engine::Instance = nullptr;
 
-Engine* Engine::GetInstance() {
-	return Instance;
-}
-
 void Engine::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -39,6 +35,7 @@ void Engine::Shutdown()
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
+	Instance = nullptr;
 	std::cout << "Sayonara!" << std::endl;
 }
 

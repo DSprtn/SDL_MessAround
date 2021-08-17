@@ -35,7 +35,13 @@ void Entity::OnRender()
 	}
 }
 
+void Entity::OnCollide(Entity* B)
+{
+	for (Component* component : Components) {
+		component->OnCollide(B);
+	}
+}
+
 void Entity::Delete() {
 	MarkedForDeletion = true;
 }
-

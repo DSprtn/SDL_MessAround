@@ -143,6 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\Collider.cpp" />
+    <ClCompile Include="Source\Core\PhysicsSystem.cpp" />
     <ClCompile Include="Source\Util\MathHelper.cpp" />
     <ClCompile Include="Source\Components\ConstrainToWindow.cpp" />
     <ClCompile Include="Source\Entities\PlayerEntity.cpp" />
@@ -159,6 +161,8 @@
     <ClCompile Include="Source\Util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Components\Collider.h" />
+    <ClInclude Include="Source\Core\PhysicsSystem.h" />
     <ClInclude Include="Source\Util\MathHelper.h" />
     <ClInclude Include="Source\Components\ConstrainToWindow.h" />
     <ClInclude Include="Source\Entities\PlayerEntity.h" />

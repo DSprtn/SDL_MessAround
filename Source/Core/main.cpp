@@ -9,12 +9,14 @@
 #include <Core/InputManager.h>
 #include <SimpleMove.h>
 #include <Entities\PlayerEntity.h>
+#include <Core/PhysicsSystem.h>
 
 
 
 int main(int argc, char* args[]) {
 	
 	Engine engine = Engine();
+	PhysicsSystem physics = PhysicsSystem();
 
 	InputManager* inputMgr = InputManager::GetInstance();
 
@@ -32,6 +34,7 @@ int main(int argc, char* args[]) {
 		engine.HandleEvents();
 		inputMgr->Update();
 		engine.Update();
+		physics.Update();
 		engine.LateUpdate();
 		engine.OnRender();
 	}

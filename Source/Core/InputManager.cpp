@@ -28,5 +28,6 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
+	Instance = nullptr;
 }
 
