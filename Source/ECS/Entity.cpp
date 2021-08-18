@@ -14,7 +14,6 @@ Entity::~Entity()
 	for (int i = 0; i < ComponentCount; i++) {
 		if (Components[i] != nullptr) {
 			delete Components[i];
-			Components[i] = nullptr;
 		}
 	}
 	delete[] Components;

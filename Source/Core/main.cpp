@@ -26,7 +26,7 @@ int main(int argc, char* args[]) {
 		for (int j = 0; j < 5; j++) {
 			Entity* e = engine.CurrentWorld->CreateEntity<EnemyEntity>("Enemy");
 			TransformComponent* t = e->GetComponent<TransformComponent>();
-			t->SetPosition(64 + 64 + i * 70, 200 + j * 64);
+			t->SetPosition(96 + 64 + i * 70, 200 + j * 64);
 		}
 	}
 
