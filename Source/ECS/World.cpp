@@ -2,11 +2,12 @@
 
 World::World()
 {
+
 }
 
 World::~World()
 {
-	for (int i = 0; i < EntityCount; i++) {
+	for (unsigned int i = 0; i < EntityCount; i++) {
 		if (Entities[i] != nullptr) {
 			delete Entities[i];
 		}
@@ -16,7 +17,7 @@ World::~World()
 
 void World::Update()
 {
-	for (int i = 0; i < EntityCount; i++) {
+	for (unsigned int i = 0; i < EntityCount; i++) {
 		if (Entities[i] == nullptr) {
 			continue;
 		}
@@ -32,7 +33,7 @@ void World::Update()
 
 void World::LateUpdate()
 {
-	for (int i = 0; i < EntityCount; i++) {
+	for (unsigned int i = 0; i < EntityCount; i++) {
 		if (Entities[i] != nullptr) {
 			Entities[i]->LateUpdate();
 		}
@@ -42,7 +43,7 @@ void World::LateUpdate()
 
 void World::OnRender()
 {
-	for (int i = 0; i < EntityCount; i++) {
+	for (unsigned int i = 0; i < EntityCount; i++) {
 		if (Entities[i] != nullptr) {
 			Entities[i]->OnRender();
 		}
@@ -51,7 +52,7 @@ void World::OnRender()
 
 void World::ClearAll()
 {
-	for (int i = 0; i < EntityCount; i++) {
+	for (unsigned int i = 0; i < EntityCount; i++) {
 		if (Entities[i] != nullptr) {
 			Entities[i]->MarkedForDeletion = true;
 		}

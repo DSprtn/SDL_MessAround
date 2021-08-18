@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL.h>
-#include <ECS\World.h>
+#include <World.h>
 
 class Engine
 {

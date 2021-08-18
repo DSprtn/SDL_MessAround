@@ -2,14 +2,14 @@
 
 #include <SDL.h>
 #include "Engine.h"
-#include <ECS/Component.h>
-#include <ECS/Entity.h>
+#include <Component.h>
+#include <Entity.h>
 #include <RenderComponent.h>
-#include <Util/Timer.h>
-#include <Core/InputManager.h>
+#include <Timer.h>
+#include <InputManager.h>
 #include <SimpleMove.h>
-#include <Entities\PlayerEntity.h>
-#include <Core/PhysicsSystem.h>
+#include <PlayerEntity.h>
+#include <PhysicsSystem.h>
 #include <EnemyEntity.h>
 
 

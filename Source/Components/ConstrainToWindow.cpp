@@ -1,6 +1,6 @@
 #include "ConstrainToWindow.h"
 #include <algorithm>
-#include <Util\MathHelper.h>
+#include <MathHelper.h>
 
 ConstrainToWindow::ConstrainToWindow(Entity* owner, SDL_Window* window, TransformComponent* transform) :  Component(owner)
 {

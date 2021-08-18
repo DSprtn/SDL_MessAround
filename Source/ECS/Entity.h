@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <ECS\Component.h>
+#include <Component.h>
 #include <string>
 #include <typeinfo>
 #include <iostream>
@@ -27,7 +27,7 @@ class Entity
 		template<typename T>
 		T* GetComponent()
 		{
-			for (int i = 0; i < ComponentCount; i++) {
+			for (unsigned int i = 0; i < ComponentCount; i++) {
 				Component* c = Components[i];
 				if (typeid(T).name() == typeid(*c).name()) {
 					return static_cast<T*>(c);

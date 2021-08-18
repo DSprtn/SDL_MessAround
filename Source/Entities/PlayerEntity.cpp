@@ -5,9 +5,9 @@
 #include <Engine.h>
 #include <ConstrainToWindow.h>
 #include <Collider.h>
-#include <Core/InputManager.h>
+#include <InputManager.h>
 #include <Timer.h>
-#include <Entities/BulletEntity.h>
+#include <BulletEntity.h>
 
 
 PlayerEntity::PlayerEntity(std::string Name) : Entity(Name)

@@ -1,6 +1,6 @@
 #pragma once
-#include "ECS\Entity.h"
-#include "ECS\Component.h"
+#include "Entity.h"
+#include "Component.h"
 #include <TransformComponent.h>
 #include <SDL.h>
 

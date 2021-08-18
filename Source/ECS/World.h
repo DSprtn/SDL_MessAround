@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <ECS/Entity.h>
+#include <Entity.h>
 
 class World
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include <ECS\Entity.h>
+#include <Entity.h>
 
 #include <TransformComponent.h>
 

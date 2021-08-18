@@ -77,6 +77,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\include;S:\Git_Projects\_learning\SDL_GG\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\lib\x86;S:\Git_Projects\_learning\SDL_GG\lib\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -106,12 +109,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>S:\Git_Projects\_learning\SDL_GG\Source\Core;S:\Git_Projects\_learning\SDL_GG\Source\ECS;S:\Git_Projects\_learning\SDL_GG\Source\Entities;S:\Git_Projects\_learning\SDL_GG\Source\Util;S:\Git_Projects\_learning\SDL_GG\Source\Components;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,6 +166,7 @@
     <ClCompile Include="Source\Core\TextureManager.cpp" />
     <ClCompile Include="Source\Components\TransformComponent.cpp" />
     <ClCompile Include="Source\Util\Timer.cpp" />
+    <ClCompile Include="Source\Util\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Entities\EnemyEntity.h" />
@@ -180,6 +186,7 @@
     <ClInclude Include="Source\Core\TextureManager.h" />
     <ClInclude Include="Source\Components\TransformComponent.h" />
     <ClInclude Include="Source\Util\Timer.h" />
+    <ClInclude Include="Source\Util\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

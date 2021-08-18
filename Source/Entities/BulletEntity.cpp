@@ -2,8 +2,8 @@
 #include <Collider.h>
 #include <TransformComponent.h>
 #include <RenderComponent.h>
-#include <Core/Engine.h>
-#include <Util\Timer.h>
+#include <Engine.h>
+#include <Timer.h>
 
 BulletEntity::BulletEntity(std::string name, float yVel, float xVel) : Entity(name)
 {
