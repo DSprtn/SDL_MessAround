@@ -17,6 +17,7 @@ Entity::~Entity()
 			Components[i] = nullptr;
 		}
 	}
+	delete[] Components;
 }
 
 void Entity::Update()

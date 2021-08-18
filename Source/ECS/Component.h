@@ -23,5 +23,6 @@ class Component
 
 		Component(const Component& that);
 		Component& operator=(const Component& that);
+
 };
 
