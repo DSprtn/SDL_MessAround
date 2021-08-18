@@ -8,18 +8,6 @@ ConstrainToWindow::ConstrainToWindow(Entity* owner, SDL_Window* window, Transfor
 	m_transform = transform;
 }
 
-ConstrainToWindow::~ConstrainToWindow()
-{
-}
-
-void ConstrainToWindow::OnRender()
-{
-	
-}
-
-void ConstrainToWindow::Update()
-{
-}
 
 void ConstrainToWindow::LateUpdate()
 {

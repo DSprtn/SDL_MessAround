@@ -11,14 +11,12 @@
 #include <PlayerEntity.h>
 #include <PhysicsSystem.h>
 #include <EnemyEntity.h>
+#include <Vector.h>
 
 
 int main(int argc, char* args[]) {
 	
-	Engine engine = Engine();
-	PhysicsSystem physics = PhysicsSystem();
-
-	InputManager* inputMgr = InputManager::GetInstance();
+	Engine engine;
 
 	engine.CurrentWorld->CreateEntity<PlayerEntity>("Player");
 
@@ -32,7 +30,7 @@ int main(int argc, char* args[]) {
 
 	Uint32 now = SDL_GetTicks();
 	Uint32 last = 0;
-	
+
 	while (engine.IsRunning) {
 		last = now;
 		now = SDL_GetTicks();
@@ -40,9 +38,7 @@ int main(int argc, char* args[]) {
 		Timer::TicksPassed = now;
 
 		engine.HandleEvents();
-		inputMgr->Update();
 		engine.Update();
-		physics.Update();
 		engine.LateUpdate();
 		engine.OnRender();
 	}

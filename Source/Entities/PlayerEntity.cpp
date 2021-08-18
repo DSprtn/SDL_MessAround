@@ -31,9 +31,8 @@ PlayerEntity::~PlayerEntity()
 void PlayerEntity::Update()
 {
 	Entity::Update();
-	InputManager* inputMgr = InputManager::GetInstance();
 
-	if (inputMgr->KeyDown(SDL_SCANCODE_SPACE) && Timer::TicksPassed - m_lastTimeBulletFired > m_fireDelay) {
+	if (InputManager::Instance->KeyDown(SDL_SCANCODE_SPACE) && Timer::TicksPassed - m_lastTimeBulletFired > m_fireDelay) {
 		FireWeapon();
 		m_lastTimeBulletFired = Timer::TicksPassed;
 	}

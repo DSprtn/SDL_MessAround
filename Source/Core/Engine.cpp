@@ -44,6 +44,7 @@ void Engine::Update()
 	if (CurrentWorld != nullptr) {
 		CurrentWorld->Update();
 	}
+	m_physics.Update();
 }
 
 void Engine::LateUpdate()
@@ -78,6 +79,7 @@ void Engine::HandleEvents()
 		}
 	}
 
+	m_inputManager.Update();
 }
 
 

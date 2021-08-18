@@ -7,17 +7,15 @@
 class ConstrainToWindow : public Component
 {
 
-	public:
-		ConstrainToWindow(Entity* owner, SDL_Window* window, TransformComponent* t);
-		~ConstrainToWindow();
+public:
+	ConstrainToWindow(Entity* owner, SDL_Window* window, TransformComponent* t);
 
-		void OnRender() override;
-		void Update() override;
-		void LateUpdate() override;
-	private:
+	void Update() override {};
+	void LateUpdate() override;
 
-		SDL_Window* m_gameWindow;
-		TransformComponent* m_transform;
+private:
+	SDL_Window* m_gameWindow;
+	TransformComponent* m_transform;
 
 };
 

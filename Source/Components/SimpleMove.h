@@ -4,20 +4,15 @@
 
 class SimpleMove : public Component
 {
-	public:
+public:
 
-		SimpleMove(Entity* owner, float speed);
-		virtual ~SimpleMove();
+	SimpleMove(Entity* owner, float speed);
 
+	float Speed = 10;
 
-		float Speed = 10;
+	void Update() override;
 
-		void Update() override;
-		void LateUpdate() override;
-		void Start() override;
-		void OnRender() override;
-
-	private:
-		TransformComponent* m_transform;
+private:
+	TransformComponent* m_transform;
 };
 

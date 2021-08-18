@@ -1,10 +1,5 @@
 #include "World.h"
 
-World::World()
-{
-
-}
-
 World::~World()
 {
 	for (unsigned int i = 0; i < EntityCount; i++) {

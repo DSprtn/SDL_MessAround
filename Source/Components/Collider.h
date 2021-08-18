@@ -6,11 +6,11 @@
 
 class Collider : public Component
 {
-	public:
-		Collider(Entity* owner, TransformComponent* t);
-		~Collider();
-		TransformComponent* m_transform;
+public:
+	Collider(Entity* owner, TransformComponent* t);
+	virtual ~Collider();
+	TransformComponent* m_transform;
 
-		void Update() override {};
+	void Update() override {};
 };
 

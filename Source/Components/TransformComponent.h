@@ -10,12 +10,8 @@ class TransformComponent : public Component
 {
 	public:
 		TransformComponent(Entity* owner, int sizeX, int sizeY);
-		~TransformComponent();
 
-		void OnRender() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Start() override;
+		void Update() override {};
 		void SetPosition(float x, float y);
 
 		float PositionX;

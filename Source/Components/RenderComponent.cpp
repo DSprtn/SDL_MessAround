@@ -11,10 +11,6 @@ RenderComponent::RenderComponent(Entity* owner, SDL_Renderer* renderer, std::str
 	m_transform = m_Owner->GetComponent<TransformComponent>();
 }
 
-RenderComponent::~RenderComponent()
-{
-}
-
 void RenderComponent::OnRender()
 {
 	if (m_Texture != nullptr) {
@@ -23,16 +19,4 @@ void RenderComponent::OnRender()
 		rect->y = m_transform->PositionY - rect->h / 2;
 		SDL_RenderCopy(m_Renderer, m_Texture, NULL, &m_transform->Rect);
 	}
-}
-
-void RenderComponent::Update()
-{
-}
-
-void RenderComponent::LateUpdate()
-{
-}
-
-void RenderComponent::Start()
-{
 }

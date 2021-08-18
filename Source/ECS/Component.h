@@ -5,24 +5,21 @@ class Entity;
 
 class Component
 {
-	public:
+public:
+	Component(Entity* Owner);
+	virtual ~Component() {};
 
-		virtual ~Component();
-		Component(Entity* Owner);
+	virtual void Update() = 0;
+	virtual void LateUpdate() {};
+	virtual void OnRender() {};
+	virtual void OnCollide(Entity* B) {};
 
+	Entity* m_Owner;
 
-		virtual void Update() = 0;
-		virtual void LateUpdate() {};
-		virtual void Start() {};
-		virtual void OnRender() {};
-		virtual void OnCollide(Entity* B) {};
+private:
 
-		Entity* m_Owner;
-
-	private:
-
-		Component(const Component& that);
-		Component& operator=(const Component& that);
+	Component(const Component& that);
+	Component& operator=(const Component& that);
 
 };
 

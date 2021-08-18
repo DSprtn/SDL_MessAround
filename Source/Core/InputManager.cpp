@@ -4,13 +4,6 @@
 
 InputManager* InputManager::Instance = nullptr;
 
-InputManager* InputManager::GetInstance() {
-	if (Instance == nullptr) {
-		Instance = new InputManager();
-	}
-	return Instance;
-}
-
 bool InputManager::KeyDown(SDL_Scancode scanCode)
 {
 	return m_keyboardStates[scanCode];
@@ -23,6 +16,7 @@ void InputManager::Update()
 
 InputManager::InputManager()
 {
+	Instance = this;
 	m_keyboardStates = nullptr;
 }
 

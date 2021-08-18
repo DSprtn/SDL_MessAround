@@ -166,7 +166,6 @@
     <ClCompile Include="Source\Core\TextureManager.cpp" />
     <ClCompile Include="Source\Components\TransformComponent.cpp" />
     <ClCompile Include="Source\Util\Timer.cpp" />
-    <ClCompile Include="Source\Util\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Entities\EnemyEntity.h" />
