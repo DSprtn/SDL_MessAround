@@ -7,7 +7,7 @@ class PlayerEntity : public Entity
 {
 	public:
 		PlayerEntity(std::string Name);
-		~PlayerEntity();
+		virtual ~PlayerEntity();
 
 		virtual void Update() override;
 

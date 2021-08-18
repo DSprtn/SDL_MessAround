@@ -20,7 +20,7 @@ void Engine::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		CurrentWorld = new World();
-		Window = SDL_CreateWindow("SpayseInvaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
+		Window = SDL_CreateWindow("SpayseInvaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 1024, SDL_WINDOW_SHOWN);
 
 		Renderer = SDL_CreateRenderer(Window, -1, 0);
 

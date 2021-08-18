@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>S:\Git_Projects\_learning\SDL_GG\Source\Util;S:\Git_Projects\_learning\SDL_GG\Source\Components;S:\Git_Projects\_learning\SDL_GG\Source;S:\Git_Projects\_learning\SDL_GG\Source\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>S:\Git_Projects\_learning\SDL_GG\Source\Entities;S:\Git_Projects\_learning\SDL_GG\Source\ECS;S:\Git_Projects\_learning\SDL_GG\Source\Util;S:\Git_Projects\_learning\SDL_GG\Source\Components;S:\Git_Projects\_learning\SDL_GG\Source;S:\Git_Projects\_learning\SDL_GG\Source\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Entities\EnemyEntity.cpp" />
     <ClCompile Include="Source\Entities\BulletEntity.cpp" />
     <ClCompile Include="Source\Components\Collider.cpp" />
     <ClCompile Include="Source\Core\PhysicsSystem.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Source\Util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Entities\EnemyEntity.h" />
     <ClInclude Include="Source\Entities\BulletEntity.h" />
     <ClInclude Include="Source\Components\Collider.h" />
     <ClInclude Include="Source\Core\PhysicsSystem.h" />

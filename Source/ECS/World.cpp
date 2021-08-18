@@ -2,20 +2,22 @@
 
 World::World()
 {
-
 }
 
 World::~World()
 {
-	Entities.clear();
+	ClearAll();
 }
 
 void World::Update()
 {
-
-	for (int i = 0; i < Entities.size(); i++) {
+	for (int i = 0; i < EntityCount; i++) {
+		if (Entities[i] == nullptr) {
+			continue;
+		}
 		if (Entities[i]->MarkedForDeletion) {
-			Entities.erase(Entities.begin() + i);
+			delete Entities[i];
+			Entities[i] = nullptr;
 		}
 		else {
 			Entities[i]->Update();
@@ -25,15 +27,29 @@ void World::Update()
 
 void World::LateUpdate()
 {
-	for (int i = 0; i < Entities.size(); i++) {
-		Entities[i]->LateUpdate();
+	for (int i = 0; i < EntityCount; i++) {
+		if (Entities[i] != nullptr) {
+			Entities[i]->LateUpdate();
+		}
 	}
 }
 
 
 void World::OnRender()
 {
-	for (Entity* entity : Entities) {
-		entity->OnRender();
+	for (int i = 0; i < EntityCount; i++) {
+		if (Entities[i] != nullptr) {
+			Entities[i]->OnRender();
+		}
+	}
+}
+
+void World::ClearAll()
+{
+	for (int i = 0; i < EntityCount; i++) {
+		if (Entities[i] != nullptr) {
+			Entities[i]->MarkedForDeletion = true;
+			Entities[i] = nullptr;
+		}
 	}
 }

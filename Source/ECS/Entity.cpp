@@ -11,34 +11,47 @@ Entity::Entity(std::string name)
 
 Entity::~Entity()
 {
-	Components.clear();
+	for (int i = 0; i < ComponentCount; i++) {
+		if (Components[i] != nullptr) {
+			delete Components[i];
+			Components[i] = nullptr;
+		}
+	}
 }
 
 void Entity::Update()
 {
-	for (Component* component : Components) {
-		component->Update();
+	for (int i = 0; i < ComponentCount; i++) {
+		if (Components[i] != nullptr) {
+			Components[i]->Update();
+		}
 	}
 }
 
 void Entity::LateUpdate()
 {
-	for (Component* component : Components) {
-		component->LateUpdate();
+	for (int i = 0; i < ComponentCount; i++) {
+		if (Components[i] != nullptr) {
+			Components[i]->LateUpdate();
+		}
 	}
 }
 
 void Entity::OnRender()
 {
-	for (Component* component : Components) {
-		component->OnRender();
+	for (int i = 0; i < ComponentCount; i++) {
+		if (Components[i] != nullptr) {
+			Components[i]->OnRender();
+		}
 	}
 }
 
 void Entity::OnCollide(Entity* B)
 {
-	for (Component* component : Components) {
-		component->OnCollide(B);
+	for (int i = 0; i < ComponentCount; i++) {
+		if (Components[i] != nullptr) {
+			Components[i]->OnCollide(B);
+		}
 	}
 }
 

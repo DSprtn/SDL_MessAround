@@ -13,7 +13,7 @@
 PlayerEntity::PlayerEntity(std::string Name) : Entity(Name)
 {
 	TransformComponent* t = AddComponent<TransformComponent>(this, 64, 64);
-	t->SetPosition(640, 650);
+	t->SetPosition(400, 900);
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\ship.png");
 	AddComponent<SimpleMove>(this, 400);
 	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, t);

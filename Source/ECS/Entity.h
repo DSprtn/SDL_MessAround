@@ -15,7 +15,8 @@ class Entity
 
 		bool MarkedForDeletion;
 		std::string Name;
-		std::vector<Component*> Components;
+
+		Component** Components = new Component * [32];
 
 		virtual void Update();
 		virtual void LateUpdate();
@@ -26,9 +27,10 @@ class Entity
 		template<typename T>
 		T* GetComponent()
 		{
-			for (auto const component : Components) {
-				if (typeid(T).name() == typeid(*component).name()) {
-					return static_cast<T*>(component);
+			for (int i = 0; i < ComponentCount; i++) {
+				Component* c = Components[i];
+				if (typeid(T).name() == typeid(*c).name()) {
+					return static_cast<T*>(c);
 				}
 			}
 			return nullptr;
@@ -37,9 +39,14 @@ class Entity
 		template <typename T, class... Args>
 		T* AddComponent(Args&&... args) {
 			T* component(new T(std::forward<Args>(args)...));
-			Components.push_back(component);
+			Components[ComponentCount] = component;
+			ComponentCount++;
 			return component;
 		}
+
+	protected:
+		unsigned int MaxComponents = 32;
+		unsigned int ComponentCount = 0;
 
 	private:
 

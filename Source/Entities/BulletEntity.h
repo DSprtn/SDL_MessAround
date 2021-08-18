@@ -6,7 +6,7 @@ class BulletEntity : public Entity
 {
 	public:
 		BulletEntity(std::string name, float xVel, float yVel);
-		~BulletEntity();
+		virtual ~BulletEntity();
 
 		void Update() override;
 		void OnCollide(Entity* other) override;
