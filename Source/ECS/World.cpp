@@ -49,7 +49,6 @@ void World::ClearAll()
 	for (int i = 0; i < EntityCount; i++) {
 		if (Entities[i] != nullptr) {
 			Entities[i]->MarkedForDeletion = true;
-			Entities[i] = nullptr;
 		}
 	}
 }
