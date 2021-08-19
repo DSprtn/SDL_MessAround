@@ -21,10 +21,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-# Custom added - ignore SDL2 libs
-lib/
-SDL2.dll
-
 # Visual Studo 2015 cache/options directory
 .vs/
 
@@ -259,6 +255,3 @@ IATETerminologyProvider/IATETerminologyProvider/pluginpackage.manifest_LOCAL_178
 /TMBackup/build/de/Sdl.Versioning.resources.dll
 /TMBackup/build/de/Sdl.Core.PluginFramework.resources.dll
 /TMBackup/build/de/Microsoft.Win32.TaskScheduler.resources.dll
-/zlib1.dll
-/SDL2_image.dll
-/libpng16-16.dll
