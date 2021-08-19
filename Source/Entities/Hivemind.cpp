@@ -11,7 +11,7 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 		for (int j = 0; j < 11; j++) {
 			std::weak_ptr<EnemyEntity> e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy");
 			TransformComponent* t = e.lock()->GetComponent<TransformComponent>();
-			t->SetPosition(96 + 64 + j * 70, 200 + i * 64);
+			t->SetPosition(96 + 64 + j * 70, 100 + i * 64);
 			Enemies.Add(e);
 		}
 	}
@@ -21,6 +21,45 @@ void Hivemind::Update()
 {
 	Entity::Update();
 	m_timeSinceFired += Timer::DeltaTime;
+
+
+	int enemiesLeft = 0;
+	bool wasOutsideWindow = false;
+
+	m_lastWindowCheck += Timer::DeltaTime;
+
+	for (int i = 0; i < Enemies.Count; i++) {
+		if (!Enemies[i].expired()) {
+			enemiesLeft++;
+			if (m_lastWindowCheck > m_outsideWindowCheckCooldown) {
+				TransformComponent* t = Enemies[i].lock().get()->Transform;
+				if (t->OutsideWindow() && !wasOutsideWindow) {
+					m_direction *= -1;
+					wasOutsideWindow = true;
+					m_lastWindowCheck = 0;
+				}
+			}
+		}
+	}
+
+	float speed = 15;
+	if (enemiesLeft > 0) {
+		speed = speed / ((float)enemiesLeft / Enemies.Count);
+	}
+	speed *= m_direction;
+
+
+	if (enemiesLeft == 0) {
+		Delete();
+		Engine::Instance->CurrentWorld->CreateEntity<Hivemind>("HiveMind");
+	}
+
+	for (int i = 0; i < Enemies.Count; i++) {
+		if (!Enemies[i].expired()) {
+			TransformComponent* t = Enemies[i].lock().get()->Transform;
+			t->SetPosition(t->PositionX + speed * Timer::DeltaTime, t->PositionY + 25 * wasOutsideWindow);
+		}
+	}
 
 	if (m_timeSinceFired > m_currentDelay) {
 		FireFromRandomEnemy();

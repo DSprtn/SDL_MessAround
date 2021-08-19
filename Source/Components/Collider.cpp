@@ -4,7 +4,7 @@
 
 Collider::Collider(Entity* owner, TransformComponent* t) : Component(owner)
 {
-	m_transform = t;
+	Transform = t;
 	PhysicsSystem::Instance->RegisterCollider(this);
 }
 

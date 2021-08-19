@@ -8,15 +8,15 @@ RenderComponent::RenderComponent(Entity* owner, SDL_Renderer* renderer, std::str
 {
 	m_Renderer = renderer;
 	m_Texture = TextureManager::GetTexture(texturePath, m_Renderer);
-	m_transform = m_Owner->GetComponent<TransformComponent>();
+	Transform = m_Owner->GetComponent<TransformComponent>();
 }
 
 void RenderComponent::OnRender()
 {
 	if (m_Texture != nullptr) {
-		SDL_Rect* rect = &m_transform->Rect;
-		rect->x = m_transform->PositionX - rect->w / 2;
-		rect->y = m_transform->PositionY - rect->h / 2;
-		SDL_RenderCopy(m_Renderer, m_Texture, NULL, &m_transform->Rect);
+		SDL_Rect* rect = &Transform->Rect;
+		rect->x = Transform->PositionX - rect->w / 2;
+		rect->y = Transform->PositionY - rect->h / 2;
+		SDL_RenderCopy(m_Renderer, m_Texture, NULL, &Transform->Rect);
 	}
 }

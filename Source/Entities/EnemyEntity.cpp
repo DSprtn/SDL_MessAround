@@ -8,7 +8,7 @@
 EnemyEntity::EnemyEntity(std::string name) : Entity(name, 64, 64)
 {
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\space_invader.png");
-	AddComponent<Collider>(this, m_transform);
+	AddComponent<Collider>(this, Transform);
 	
 	AddTag("Enemy");
 }
@@ -17,7 +17,7 @@ void EnemyEntity::FireWeapon()
 {
 	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Player", 800.0f, 0.0f);
 	auto bulletTransform = bullet->GetComponent<TransformComponent>();
-	bulletTransform->SetPosition(m_transform->PositionX, (m_transform->PositionY + m_transform->Rect.h / 2));
+	bulletTransform->SetPosition(Transform->PositionX, (Transform->PositionY + Transform->Rect.h / 2));
 }
 
 void EnemyEntity::Update()
@@ -33,5 +33,5 @@ void EnemyEntity::LateUpdate()
 void EnemyEntity::Delete()
 {
 	Entity::Delete();
-	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", m_transform->PositionX,m_transform->PositionY, 48, 48);
+	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", Transform->PositionX,Transform->PositionY, 48, 48);
 }

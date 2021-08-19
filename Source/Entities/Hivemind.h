@@ -14,6 +14,10 @@ public:
 	Vector<std::weak_ptr<EnemyEntity>> Enemies;
 
 protected:
+	float m_outsideWindowCheckCooldown = 0.5f;
+	float m_lastWindowCheck = 0;
+	float m_direction = 1;
+	float m_velocity = 100;
 	float m_timeSinceFired = 0;
 	float m_baseFireDelay = 1;
 	float m_fireDelayVariance = 0.5f;

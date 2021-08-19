@@ -9,7 +9,7 @@
 BulletEntity::BulletEntity(std::string name, std::string targetTag, float yVel, float xVel) : Entity(name, 6, 23)
 {
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\laser.png");
-	AddComponent<Collider>(this, m_transform);
+	AddComponent<Collider>(this, Transform);
 	AddComponent<DestroyAfterLifetime>(this, 1.5f);
 
 	xVelocity = xVel;
@@ -26,8 +26,8 @@ BulletEntity::~BulletEntity()
 void BulletEntity::Update()
 {
 	Entity::Update();
-	m_transform->PositionX += xVelocity * Timer::DeltaTime;
-	m_transform->PositionY += yVelocity * Timer::DeltaTime;
+	Transform->PositionX += xVelocity * Timer::DeltaTime;
+	Transform->PositionY += yVelocity * Timer::DeltaTime;
 }
 
 void BulletEntity::OnCollide(Entity* other)

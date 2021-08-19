@@ -7,7 +7,7 @@ Entity::Entity(std::string name, int sizeX, int sizeY)
 {
 	Name = name;
 	MarkedForDeletion = false;
-	m_transform = AddComponent<TransformComponent>(this, sizeX, sizeY).lock().get();
+	Transform = AddComponent<TransformComponent>(this, sizeX, sizeY).lock().get();
 }
 
 Entity::Entity(std::string Name) : Entity(Name, 1, 1) {};

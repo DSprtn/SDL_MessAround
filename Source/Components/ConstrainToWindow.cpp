@@ -5,7 +5,7 @@
 ConstrainToWindow::ConstrainToWindow(Entity* owner, SDL_Window* window, TransformComponent* transform) :  Component(owner)
 {
 	m_gameWindow = window;
-	m_transform = transform;
+	Transform = transform;
 }
 
 
@@ -15,10 +15,10 @@ void ConstrainToWindow::LateUpdate()
 	int sizeY = 0;
 	SDL_GetWindowSize(m_gameWindow, &sizeX, &sizeY);
 
-	float minX = (float)m_transform->Rect.w / 2;
-	float minY = (float)m_transform->Rect.y / 2;
-	float maxX = sizeX - (float)m_transform->Rect.w / 2;
-	float maxY = sizeY - (float) m_transform->Rect.h / 2;
-	m_transform->PositionX = MathHelper::Clamp(m_transform->PositionX, minX, maxX);
-	m_transform->PositionY = MathHelper::Clamp(m_transform->PositionY, minY, maxY);
+	float minX = (float)Transform->Rect.w / 2;
+	float minY = (float)Transform->Rect.y / 2;
+	float maxX = sizeX - (float)Transform->Rect.w / 2;
+	float maxY = sizeY - (float) Transform->Rect.h / 2;
+	Transform->PositionX = MathHelper::Clamp(Transform->PositionX, minX, maxX);
+	Transform->PositionY = MathHelper::Clamp(Transform->PositionY, minY, maxY);
 }

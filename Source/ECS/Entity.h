@@ -59,9 +59,7 @@ public:
 		return shared;
 	}
 
-
-protected:
-	TransformComponent* m_transform;
+	TransformComponent* Transform;
 
 private:
 

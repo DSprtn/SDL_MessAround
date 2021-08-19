@@ -5,7 +5,7 @@
 SimpleMove::SimpleMove(Entity* owner, float speed) : Component(owner)
 {
 	Speed = speed;
-	m_transform = owner->GetComponent<TransformComponent>();
+	Transform = owner->GetComponent<TransformComponent>();
 }
 
 void SimpleMove::Update()
@@ -21,5 +21,5 @@ void SimpleMove::Update()
 		xMovement += 1;
 	}
 
-	m_transform->PositionX += xMovement * delta * Speed;
+	Transform->PositionX += xMovement * delta * Speed;
 }

@@ -15,7 +15,7 @@ public:
 
 private:
 	SDL_Window* m_gameWindow;
-	TransformComponent* m_transform;
+	TransformComponent* Transform;
 
 };
 

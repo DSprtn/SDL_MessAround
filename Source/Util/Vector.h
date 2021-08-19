@@ -33,6 +33,20 @@ public:
 		return *this;
 	}
 
+	Vector& operator=(Vector&& that)
+	{
+		this->swap(that);
+		return *this;
+	}
+
+	Vector(Vector&& that)
+		: m_size(0)
+		, Count(0)
+		, m_elements(nullptr)
+	{
+		this->swap(that);
+	}
+
 	T operator [] (int i) const { 
 		if (i <= Count) {
 			return m_elements[i];
@@ -47,7 +61,7 @@ public:
 		throw std::exception("Tried to access out of bounds element!");
 	}
 
-	void Add(const T &elem)
+	void Add(T const& elem)
 	{
 		if (m_size == Count) {
 			Reserve(m_size * 2);

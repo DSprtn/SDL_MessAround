@@ -15,6 +15,6 @@ public:
 private:
 	SDL_Texture* m_Texture;
 	SDL_Renderer* m_Renderer;
-	TransformComponent* m_transform;
+	TransformComponent* Transform;
 };
 

@@ -13,6 +13,6 @@ public:
 	void Update() override;
 
 private:
-	TransformComponent* m_transform;
+	TransformComponent* Transform;
 };
 

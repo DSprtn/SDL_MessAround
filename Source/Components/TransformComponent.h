@@ -13,6 +13,7 @@ class TransformComponent : public Component
 
 		void Update() override {};
 		void SetPosition(float x, float y);
+		bool OutsideWindow();
 
 		float PositionX;
 		float PositionY; 
