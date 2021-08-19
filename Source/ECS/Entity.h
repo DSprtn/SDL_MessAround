@@ -7,17 +7,19 @@
 #include <unordered_set>
 
 class Component;
+class TransformComponent;
 
 class Entity
 {
 public:
+	Entity(std::string Name, int sizeX, int sizeY);
 	Entity(std::string Name);
-	virtual ~Entity();
+	virtual ~Entity() = default;
 
 	bool MarkedForDeletion;
 	std::string Name;
 
-	Vector<Component*> Components;
+	Vector<std::shared_ptr<Component>> Components;
 	std::unordered_set<std::string> Tags;
 
 	virtual void Update();
@@ -42,7 +44,7 @@ public:
 	T* GetComponent()
 	{
 		for (unsigned int i = 0; i < Components.Count; i++) {
-			Component* c = Components[i]; 
+			Component* c = Components[i].get(); 
 			if (typeid(T).name() == typeid(*c).name()) {
 				return static_cast<T*>(c);
 			}
@@ -51,11 +53,15 @@ public:
 	}
 
 	template <typename T, class... Args>
-	T* AddComponent(Args&&... args) {
-		T* component(new T(std::forward<Args>(args)...));
-		Components.Add(component);
-		return component;
+	std::weak_ptr<T> AddComponent(Args&&... args) {
+		std::shared_ptr<T> shared = std::make_shared<T>(std::forward<Args>(args)...);
+		Components.Add(shared);
+		return shared;
 	}
+
+
+protected:
+	TransformComponent* m_transform;
 
 private:
 

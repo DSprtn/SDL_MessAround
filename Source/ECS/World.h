@@ -9,7 +9,7 @@ public:
 	World() = default;
 	~World();
 
-	Vector<Entity*> Entities;
+	std::vector<std::shared_ptr<Entity>> Entities;
 
 	void Update();
 	void LateUpdate();
@@ -17,10 +17,10 @@ public:
 	void ClearAllEntities();
 
 	template <typename T, class... Args>
-	T* CreateEntity(Args&&... args) {
-		T* entity(new T(std::forward<Args>(args)...));
-		Entities.Add(entity);
-		return entity;
+	std::shared_ptr<T> CreateEntity(Args&&... args) {
+		std::shared_ptr<T> shared = std::make_shared<T>(std::forward<Args>(args)...);
+		Entities.push_back(shared);
+		return shared;
 	}
 
 private:

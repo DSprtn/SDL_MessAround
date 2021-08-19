@@ -148,6 +148,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Entities\Hivemind.cpp" />
+    <ClCompile Include="Source\Entities\EnemyDestroyedParticle.cpp" />
+    <ClCompile Include="Source\Components\DestroyAfterLifetime.cpp" />
     <ClCompile Include="Source\Entities\EnemyEntity.cpp" />
     <ClCompile Include="Source\Entities\BulletEntity.cpp" />
     <ClCompile Include="Source\Components\Collider.cpp" />
@@ -168,6 +171,9 @@
     <ClCompile Include="Source\Util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Entities\Hivemind.h" />
+    <ClInclude Include="Source\Entities\EnemyDestroyedParticle.h" />
+    <ClInclude Include="Source\Components\DestroyAfterLifetime.h" />
     <ClInclude Include="Source\Entities\EnemyEntity.h" />
     <ClInclude Include="Source\Entities\BulletEntity.h" />
     <ClInclude Include="Source\Components\Collider.h" />

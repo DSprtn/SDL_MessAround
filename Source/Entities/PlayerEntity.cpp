@@ -8,26 +8,21 @@
 #include <InputManager.h>
 #include <Timer.h>
 #include <BulletEntity.h>
+#include <EnemyDestroyedParticle.h>
 
 
-PlayerEntity::PlayerEntity(std::string Name) : Entity(Name)
+PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
 {
-	TransformComponent* t = AddComponent<TransformComponent>(this, 64, 64);
-	t->SetPosition(400, 900);
+	m_transform->SetPosition(400, 900);
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\ship.png");
 	AddComponent<SimpleMove>(this, 400);
-	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, t);
-	AddComponent<Collider>(this, t);
+	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, m_transform);
+	AddComponent<Collider>(this, m_transform);
 
 	m_lastTimeBulletFired = -900;
 	m_fireDelay = 900; // Ms
-	m_transform = t;
-
+	
 	AddTag("Player");
-}
-
-PlayerEntity::~PlayerEntity()
-{
 }
 
 void PlayerEntity::Update()
@@ -40,9 +35,14 @@ void PlayerEntity::Update()
 	}
 }
 
+void PlayerEntity::Delete() {
+	Entity::Delete();
+	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", m_transform->PositionX, m_transform->PositionY, 48, 48);
+}
+
 void PlayerEntity::FireWeapon()
 {
-	BulletEntity* bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", -1000.0f, 0.0f);
+	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Enemy", -1000.0f, 0.0f);
 	auto bulletTransform = bullet->GetComponent<TransformComponent>();
 	bulletTransform->SetPosition(m_transform->PositionX,( m_transform->PositionY - 10 - m_transform->Rect.h / 2));
 }

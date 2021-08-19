@@ -6,16 +6,14 @@ class PlayerEntity : public Entity
 {
 public:
 	PlayerEntity(std::string Name);
-	virtual ~PlayerEntity();
 
 	virtual void Update() override;
+
+	void Delete() override;
 
 private:
 	int m_lastTimeBulletFired;
 	unsigned int m_fireDelay;
-
-	TransformComponent* m_transform;
-
 
 	void FireWeapon();
 };
