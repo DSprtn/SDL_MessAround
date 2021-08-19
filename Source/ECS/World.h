@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <Vector.h>
 #include <Entity.h>
 
 class World
@@ -9,25 +9,19 @@ public:
 	World() = default;
 	~World();
 
-
-	Entity** Entities = new Entity* [1024];
+	Vector<Entity*> Entities;
 
 	void Update();
 	void LateUpdate();
 	void OnRender();
-	void ClearAll();
+	void ClearAllEntities();
 
 	template <typename T, class... Args>
 	T* CreateEntity(Args&&... args) {
 		T* entity(new T(std::forward<Args>(args)...));
-		Entities[EntityCount] = entity;
-		EntityCount++;
+		Entities.Add(entity);
 		return entity;
 	}
-
-protected:
-	unsigned int MaxEntites = 1024;
-	unsigned int EntityCount = 0;
 
 private:
 	World(const World& that);

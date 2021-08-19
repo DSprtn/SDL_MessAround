@@ -12,6 +12,8 @@ public:
 	void OnCollide(Entity* other) override;
 
 private:
+	float m_maxLifetime = 1;
+	float m_currLifetime = 0;
 	float xVelocity, yVelocity;
 	TransformComponent* m_transform;
 };

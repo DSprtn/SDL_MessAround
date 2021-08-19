@@ -9,6 +9,8 @@ EnemyEntity::EnemyEntity(std::string name) : Entity(name)
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\space_invader.png");
 	AddComponent<Collider>(this, t);
 	m_transform = t;
+
+	AddTag("Enemy");
 }
 
 EnemyEntity::~EnemyEntity()

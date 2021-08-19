@@ -19,9 +19,11 @@ PlayerEntity::PlayerEntity(std::string Name) : Entity(Name)
 	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, t);
 	AddComponent<Collider>(this, t);
 
-	m_lastTimeBulletFired = 0;
-	m_fireDelay = 1000; // Ms
+	m_lastTimeBulletFired = -900;
+	m_fireDelay = 900; // Ms
 	m_transform = t;
+
+	AddTag("Player");
 }
 
 PlayerEntity::~PlayerEntity()

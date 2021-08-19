@@ -16,11 +16,21 @@ public:
 		Count = 0;
 	}
 
-	Vector()
-	{
-		m_elements = new T[5];
-		m_size = 5;
-		Count = 0;
+	Vector() : Vector(5) {};
+
+	Vector(const Vector& that) {
+		m_size = that.m_size;
+		m_elements = new T[m_size];
+
+		for (int i = 0; i < that.Count; i++) {
+			m_elements[i] = that[i];
+		}
+		Count = that.Count;
+	}
+
+	Vector& operator=(Vector that) {
+		this->swap(that);
+		return *this;
 	}
 
 	T operator [] (int i) const { 
@@ -29,6 +39,7 @@ public:
 		}
 		throw std::exception("Tried to access out of bounds element!");
 	}
+
 	T& operator [] (int i) {
 		if (i <= Count) {
 			return m_elements[i];
@@ -41,11 +52,15 @@ public:
 		if (m_size == Count) {
 			Reserve(m_size * 2);
 		}
-
-		//std::cout << "Added elem, capacity: " << m_size << " new element count:" << Count + 1 << std::endl;
-
 		m_elements[Count] = elem;
 		Count++;
+	}
+
+	void Clear() {
+		for (int i = 0; i < Count; i++) {
+			m_elements[i].~T();
+		}
+		Count = 0;
 	}
 
 	void Erase(const T &elem)
@@ -59,22 +74,16 @@ public:
 		throw std::exception("Element not inside of array!");
 	}
 
-
 	void EraseAt(int index) {
 		if (index < 0 || index > Count) {
 			throw std::exception("Trying to erase outside of bounds!");
 		}
 		m_elements[index].~T();
-
 		for (++index; index < Count; index++) {
 			m_elements[index-1] = m_elements[index];
 		}
 		Count--;
 	}
-
-	unsigned int Count;
-
-protected:
 
 	void Reserve(unsigned int size)
 	{
@@ -91,11 +100,10 @@ protected:
 		m_elements = newElem;
 	}
 
+	int Count;
+
+protected:
+	int m_size;
 	T* m_elements;
-	unsigned int m_size;
 
-
-private:
-	Vector(const Vector& that);
-	Vector& operator=(const Vector& that);
 };

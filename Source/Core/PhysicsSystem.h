@@ -1,11 +1,11 @@
 #pragma once
-#include <vector>
+#include <Vector.h>
 #include <Collider.h>
 class PhysicsSystem
 {
 public:
 	static PhysicsSystem* Instance;	
-	std::vector<Collider*> Colliders;
+	Vector<Collider*> Colliders;
 
 	void RegisterCollider(Collider* col);
 	void UnregisterCollider(Collider* col);

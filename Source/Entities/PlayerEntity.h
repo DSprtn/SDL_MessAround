@@ -11,7 +11,7 @@ public:
 	virtual void Update() override;
 
 private:
-	unsigned int m_lastTimeBulletFired;
+	int m_lastTimeBulletFired;
 	unsigned int m_fireDelay;
 
 	TransformComponent* m_transform;

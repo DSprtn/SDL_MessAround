@@ -6,18 +6,18 @@ PhysicsSystem* PhysicsSystem::Instance = nullptr;
 
 void PhysicsSystem::RegisterCollider(Collider* col)
 {
-	Colliders.push_back(col);
+	Colliders.Add(col);
 }
 
 void PhysicsSystem::UnregisterCollider(Collider* col)
 {
-	Colliders.erase(std::find(Colliders.begin(), Colliders.end(), col));
+	Colliders.Erase(col);
 }
 
 void PhysicsSystem::Update()
 {
-	for (int i = 0; i < Colliders.size(); i++) {
-		for (int j = 0; j < Colliders.size(); j++) {
+	for (int i = 0; i < Colliders.Count; i++) {
+		for (int j = 0; j < Colliders.Count; j++) {
 			if (i != j) {
 				const SDL_Rect A = Colliders[i]->m_transform->Rect;
 				const SDL_Rect B = Colliders[j]->m_transform->Rect;
@@ -38,6 +38,5 @@ PhysicsSystem::PhysicsSystem()
 
 PhysicsSystem::~PhysicsSystem()
 {
-	Colliders.clear();
 	Instance = nullptr;
 }

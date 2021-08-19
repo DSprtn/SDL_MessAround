@@ -1,9 +1,10 @@
 #pragma once
-#include <vector>
+#include <Vector.h>
 #include <Component.h>
 #include <string>
 #include <typeinfo>
 #include <iostream>
+#include <unordered_set>
 
 class Component;
 
@@ -16,7 +17,8 @@ public:
 	bool MarkedForDeletion;
 	std::string Name;
 
-	Component** Components = new Component * [32];
+	Vector<Component*> Components;
+	std::unordered_set<std::string> Tags;
 
 	virtual void Update();
 	virtual void LateUpdate();
@@ -24,11 +26,23 @@ public:
 	virtual void Delete();
 	virtual void OnCollide(Entity* B);
 
+	void AddTag(std::string tag) {
+		Tags.insert(tag);
+	}
+
+	void RemoveTag(std::string tag) {
+		Tags.erase(tag);
+	}
+
+	bool HasTag(std::string tag) {
+		return Tags.count(tag) > 0;
+	}
+
 	template<typename T>
 	T* GetComponent()
 	{
-		for (unsigned int i = 0; i < ComponentCount; i++) {
-			Component* c = Components[i];
+		for (unsigned int i = 0; i < Components.Count; i++) {
+			Component* c = Components[i]; 
 			if (typeid(T).name() == typeid(*c).name()) {
 				return static_cast<T*>(c);
 			}
@@ -39,14 +53,9 @@ public:
 	template <typename T, class... Args>
 	T* AddComponent(Args&&... args) {
 		T* component(new T(std::forward<Args>(args)...));
-		Components[ComponentCount] = component;
-		ComponentCount++;
+		Components.Add(component);
 		return component;
 	}
-
-protected:
-	unsigned int MaxComponents = 32;
-	unsigned int ComponentCount = 0;
 
 private:
 

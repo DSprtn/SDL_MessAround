@@ -11,47 +11,36 @@ Entity::Entity(std::string name)
 
 Entity::~Entity()
 {
-	for (unsigned int i = 0; i < ComponentCount; i++) {
-		if (Components[i] != nullptr) {
-			delete Components[i];
-		}
+	for (unsigned int i = 0; i < Components.Count; i++) {
+		delete Components[i];
 	}
-	delete[] Components;
 }
 
 void Entity::Update()
 {
-	for (unsigned int i = 0; i < ComponentCount; i++) {
-		if (Components[i] != nullptr) {
-			Components[i]->Update();
-		}
+	for (unsigned int i = 0; i < Components.Count; i++) {
+		Components[i]->Update();
 	}
 }
 
 void Entity::LateUpdate()
 {
-	for (unsigned int i = 0; i < ComponentCount; i++) {
-		if (Components[i] != nullptr) {
-			Components[i]->LateUpdate();
-		}
+	for (unsigned int i = 0; i < Components.Count; i++) {
+		Components[i]->LateUpdate();
 	}
 }
 
 void Entity::OnRender()
 {
-	for (unsigned int i = 0; i < ComponentCount; i++) {
-		if (Components[i] != nullptr) {
-			Components[i]->OnRender();
-		}
+	for (unsigned int i = 0; i < Components.Count; i++) {
+		Components[i]->OnRender();
 	}
 }
 
 void Entity::OnCollide(Entity* B)
 {
-	for (unsigned int i = 0; i < ComponentCount; i++) {
-		if (Components[i] != nullptr) {
-			Components[i]->OnCollide(B);
-		}
+	for (unsigned int i = 0; i < Components.Count; i++) {
+		Components[i]->OnCollide(B);
 	}
 }
 

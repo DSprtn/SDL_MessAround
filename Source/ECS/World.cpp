@@ -2,54 +2,42 @@
 
 World::~World()
 {
-	for (unsigned int i = 0; i < EntityCount; i++) {
-		if (Entities[i] != nullptr) {
-			delete Entities[i];
-		}
-	}
-	delete[] Entities;
+	ClearAllEntities();
 }
 
 void World::Update()
 {
-	for (unsigned int i = 0; i < EntityCount; i++) {
-		if (Entities[i] == nullptr) {
-			continue;
-		}
+	for (unsigned int i = 0; i < Entities.Count; i++) {
 		if (Entities[i]->MarkedForDeletion) {
 			delete Entities[i];
-			Entities[i] = nullptr;
+			Entities.EraseAt(i);
+			i--;
 		}
-		else {
-			Entities[i]->Update();
-		}
+	}
+
+	for (unsigned int i = 0; i < Entities.Count; i++) {
+		Entities[i]->Update();
 	}
 }
 
 void World::LateUpdate()
 {
-	for (unsigned int i = 0; i < EntityCount; i++) {
-		if (Entities[i] != nullptr) {
-			Entities[i]->LateUpdate();
-		}
+	for (unsigned int i = 0; i < Entities.Count; i++) {
+		Entities[i]->LateUpdate();
 	}
 }
-
 
 void World::OnRender()
 {
-	for (unsigned int i = 0; i < EntityCount; i++) {
-		if (Entities[i] != nullptr) {
-			Entities[i]->OnRender();
-		}
+	for (unsigned int i = 0; i < Entities.Count; i++) {
+		Entities[i]->OnRender();
 	}
 }
 
-void World::ClearAll()
+void World::ClearAllEntities()
 {
-	for (unsigned int i = 0; i < EntityCount; i++) {
-		if (Entities[i] != nullptr) {
-			Entities[i]->MarkedForDeletion = true;
-		}
+	for (unsigned int i = 0; i < Entities.Count; i++) {
+		delete Entities[i];
 	}
+	Entities.Clear();
 }
