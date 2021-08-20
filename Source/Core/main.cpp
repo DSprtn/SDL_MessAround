@@ -37,7 +37,7 @@ int main(int argc, char* args[]) {
 
 		Timer::DeltaTime = ((long double)microseconds / 1000000);
 
-		// We should limit framerate to prevent stuttering at very low frametimes, but instead we print the current frametime for diagnostics : ^)
+		// We should limit framerate to prevent stuttering at very low frametimes, but instead we print the current frametime for diagnostics (and to slow the game down) : ^)
 		std::cout << Timer::DeltaTime << std::endl;
 		engine.HandleEvents();
 		engine.Update();
