@@ -61,7 +61,7 @@ public:
 		throw std::exception("Tried to access out of bounds element!");
 	}
 
-	void Add(T const& elem)
+	void Add(const T& elem)
 	{
 		if (m_size == Count) {
 			Reserve(m_size * 2);
@@ -75,6 +75,15 @@ public:
 			m_elements[i].~T();
 		}
 		Count = 0;
+	}
+
+	int GetIndex(const T& elem) {
+		for (int i = 0; i < Count; i++) {
+			if (m_elements[i] == elem) {
+				return i;
+			}
+		}
+		throw std::exception("Element not inside of array!");
 	}
 
 	void Erase(const T &elem)
@@ -94,7 +103,7 @@ public:
 		}
 		m_elements[index].~T();
 		for (++index; index < Count; index++) {
-			m_elements[index-1] = m_elements[index];
+			m_elements[index - 1] = m_elements[index];
 		}
 		Count--;
 	}
@@ -106,7 +115,7 @@ public:
 		}
 		T* newElem = new T[size];
 		for (int i = 0; i < Count; i++) {
-			newElem[i] = m_elements[i];
+			newElem[i] =  m_elements[i];
 		}
 
 		m_size = size;
@@ -121,3 +130,4 @@ protected:
 	T* m_elements;
 
 };
+

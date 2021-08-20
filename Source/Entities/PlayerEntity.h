@@ -12,8 +12,8 @@ public:
 	void Delete() override;
 
 private:
-	int m_lastTimeBulletFired;
-	unsigned int m_fireDelay;
+	float m_timeSinceFired;
+	float m_fireDelay;
 
 	void FireWeapon();
 };

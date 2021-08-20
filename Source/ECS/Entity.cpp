@@ -7,10 +7,17 @@ Entity::Entity(std::string name, int sizeX, int sizeY)
 {
 	Name = name;
 	MarkedForDeletion = false;
-	Transform = AddComponent<TransformComponent>(this, sizeX, sizeY).lock().get();
+	Transform = AddComponent<TransformComponent>(this, sizeX, sizeY);
 }
 
-Entity::Entity(std::string Name) : Entity(Name, 1, 1) {};
+Entity::Entity(std::string Name) : Entity(Name, 1, 1) {}
+
+Entity::~Entity()
+{
+	for (int i = 0; i < Components.Count; i++) {
+		delete Components[i];
+	}
+}
 
 void Entity::Update()
 {

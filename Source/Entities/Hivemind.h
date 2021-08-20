@@ -10,8 +10,9 @@ public:
 
 	void Update() override;
 	void FireFromRandomEnemy();
+	void EnemyDied(EnemyEntity* e);
 
-	Vector<std::weak_ptr<EnemyEntity>> Enemies;
+	Vector<EnemyEntity*> Enemies;
 
 protected:
 	float m_outsideWindowCheckCooldown = 0.5f;
@@ -24,5 +25,6 @@ protected:
 	float m_currentDelay = 1;
 	int m_EnemiesWidth = 11;
 	int m_EnemiesHeight = 5;
+	int m_enemiesLeft = 0;
 };
 

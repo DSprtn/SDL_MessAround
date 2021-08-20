@@ -9,10 +9,11 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 {
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 11; j++) {
-			std::weak_ptr<EnemyEntity> e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy");
-			TransformComponent* t = e.lock()->GetComponent<TransformComponent>();
+			auto e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy", this);
+			TransformComponent* t = e->GetComponent<TransformComponent>();
 			t->SetPosition(96 + 64 + j * 70, 100 + i * 64);
 			Enemies.Add(e);
+			m_enemiesLeft++;
 		}
 	}
 }
@@ -20,43 +21,43 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 void Hivemind::Update()
 {
 	Entity::Update();
+
 	m_timeSinceFired += Timer::DeltaTime;
 
-
-	int enemiesLeft = 0;
 	bool wasOutsideWindow = false;
 
 	m_lastWindowCheck += Timer::DeltaTime;
 
 	for (int i = 0; i < Enemies.Count; i++) {
-		if (!Enemies[i].expired()) {
-			enemiesLeft++;
+		if (Enemies[i] != nullptr) {
 			if (m_lastWindowCheck > m_outsideWindowCheckCooldown) {
-				TransformComponent* t = Enemies[i].lock().get()->Transform;
+				TransformComponent* t = Enemies[i]->Transform;
 				if (t->OutsideWindow() && !wasOutsideWindow) {
 					m_direction *= -1;
 					wasOutsideWindow = true;
 					m_lastWindowCheck = 0;
+					break;
 				}
 			}
 		}
 	}
 
 	float speed = 15;
-	if (enemiesLeft > 0) {
-		speed = speed / ((float)enemiesLeft / Enemies.Count);
+	if (m_enemiesLeft > 0) {
+		speed = speed / ((float)m_enemiesLeft / Enemies.Count);
 	}
 	speed *= m_direction;
 
 
-	if (enemiesLeft == 0) {
+	if (m_enemiesLeft == 0) {
 		Delete();
 		Engine::Instance->CurrentWorld->CreateEntity<Hivemind>("HiveMind");
+		return;
 	}
 
 	for (int i = 0; i < Enemies.Count; i++) {
-		if (!Enemies[i].expired()) {
-			TransformComponent* t = Enemies[i].lock().get()->Transform;
+		if (Enemies[i] != nullptr) {
+			TransformComponent* t = Enemies[i]->Transform;
 			t->SetPosition(t->PositionX + speed * Timer::DeltaTime, t->PositionY + 25 * wasOutsideWindow);
 		}
 	}
@@ -78,8 +79,8 @@ void Hivemind::FireFromRandomEnemy()
 	for (int i = 10; i > -1; i--) {
 		for (int j = 4; j > -1; j--) {
 			auto e = Enemies[MathHelper::GetIndexFrom2DCoord(i, j, 11, 5)];
-			if (!e.expired()) {
-				possibleEnemies.push_back(e.lock().get());
+			if (e != nullptr) {
+				possibleEnemies.push_back(e);
 				break;
 			}
 		}
@@ -95,4 +96,10 @@ void Hivemind::FireFromRandomEnemy()
 		}
 		possibleEnemies[fireIndex]->FireWeapon();
 	}
+}
+
+void Hivemind::EnemyDied(EnemyEntity* e)
+{
+	m_enemiesLeft--;
+	Enemies[Enemies.GetIndex(e)] = nullptr;
 }

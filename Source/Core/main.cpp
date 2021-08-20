@@ -14,6 +14,7 @@
 #include <Vector.h>
 #include <Hivemind.h>
 #include <MathHelper.h>
+#include <chrono>
 
 int main(int argc, char* args[]) {
 	
@@ -23,17 +24,21 @@ int main(int argc, char* args[]) {
 	engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
 
 
-	Uint32 now = SDL_GetTicks();
-	Uint32 last = 0;
+	float timeScale = 1.0f;
 
-	float timeScale = 1;
+	auto now = std::chrono::high_resolution_clock::now();
+	auto last = std::chrono::high_resolution_clock::now();
 
 	while (engine.IsRunning) {
 		last = now;
-		now = SDL_GetTicks() * timeScale;
-		Timer::DeltaTime = ((float)(now - last) / 1000);
-		Timer::TicksPassed = now;
+		now = std::chrono::high_resolution_clock::now();
+		auto elapsed = std::chrono::high_resolution_clock::now() - last;
+		long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
 
+		Timer::DeltaTime = ((long double)microseconds / 1000000);
+
+		// We should limit framerate to prevent stuttering at very low frametimes, but instead we print the current frametime for diagnostics : ^)
+		std::cout << Timer::DeltaTime << std::endl;
 		engine.HandleEvents();
 		engine.Update();
 		engine.LateUpdate();

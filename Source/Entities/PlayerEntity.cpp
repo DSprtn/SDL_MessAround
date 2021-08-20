@@ -19,8 +19,8 @@ PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
 	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, Transform);
 	AddComponent<Collider>(this, Transform);
 
-	m_lastTimeBulletFired = -900;
-	m_fireDelay = 700; // Ms
+	m_timeSinceFired = .7f;
+	m_fireDelay = 0.0f;
 	
 	AddTag("Player");
 }
@@ -28,10 +28,10 @@ PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
 void PlayerEntity::Update()
 {
 	Entity::Update();
-
-	if (InputManager::Instance->KeyDown(SDL_SCANCODE_SPACE) && Timer::TicksPassed - m_lastTimeBulletFired > m_fireDelay) {
+	m_timeSinceFired += Timer::DeltaTime;
+	if (InputManager::Instance->KeyDown(SDL_SCANCODE_SPACE) && m_timeSinceFired > m_fireDelay) {
 		FireWeapon();
-		m_lastTimeBulletFired = Timer::TicksPassed;
+		m_timeSinceFired = 0;
 	}
 }
 

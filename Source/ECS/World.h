@@ -5,11 +5,10 @@
 class World
 {
 public:
-
 	World() = default;
 	~World();
 
-	std::vector<std::shared_ptr<Entity>> Entities;
+	Vector<Entity*> Entities;
 
 	void Update();
 	void LateUpdate();
@@ -17,10 +16,10 @@ public:
 	void ClearAllEntities();
 
 	template <typename T, class... Args>
-	std::shared_ptr<T> CreateEntity(Args&&... args) {
-		std::shared_ptr<T> shared = std::make_shared<T>(std::forward<Args>(args)...);
-		Entities.push_back(shared);
-		return shared;
+	T* CreateEntity(Args&&... args) {
+		T* entity(new T(std::forward<Args>(args)...));
+		Entities.Add(entity);
+		return entity;
 	}
 
 private:
