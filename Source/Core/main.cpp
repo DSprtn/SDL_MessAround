@@ -17,12 +17,10 @@
 #include <chrono>
 
 int main(int argc, char* args[]) {
-	
 	Engine engine;
 
 	engine.CurrentWorld->CreateEntity<PlayerEntity>("Player");
 	engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
-
 
 	float timeScale = 1.0f;
 

@@ -20,7 +20,7 @@ private:
 	void UpdateAllEnemyTransforms();
 	void CalculateFireFromTargets();
 
-	Vector<EnemyEntity*> m_possibleFireTargets{8};
+	Vector<EnemyEntity*> m_possibleFireFromTargets{8};
 
 	float m_direction = 1;
 	float m_velocity = 15;

@@ -11,7 +11,7 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 		for (int j = 0; j < 11; j++) {
 			auto e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy", this);
 			TransformComponent* t = e->GetComponent<TransformComponent>();
-			t->SetPosition(96 + 64 + j * 70, 100 + i * 64);
+			t->SetPosition(150 + j * 70, 100 + i * 64);
 			Enemies.Add(e);
 			m_enemiesLeft++;
 		}
@@ -81,11 +81,11 @@ bool Hivemind::CollideWithWindowBounds()
 			TransformComponent* t = Enemies[i]->Transform;
 			rectWidth = t->Rect.w;
 			float posX = t->PositionX;
-			if (minX > t->PositionX) {
-				minX = t->PositionX;
+			if (minX > posX) {
+				minX = posX;
 			}
-			if (maxX < t->PositionX) {
-				maxX = t->PositionX;
+			if (maxX < posX) {
+				maxX = posX;
 			}
 		}
 	}
@@ -103,26 +103,26 @@ bool Hivemind::CollideWithWindowBounds()
 
 void Hivemind::FireFromRandomEnemy()
 {
-	if (m_possibleFireTargets.Count > 0) {
+	if (m_possibleFireFromTargets.Count > 0) {
 		int fireIndex = 0;
-		if (m_possibleFireTargets.Count > 1) {
+		if (m_possibleFireFromTargets.Count > 1) {
 			std::random_device rd;
 			std::mt19937 mt(rd());
-			std::uniform_real_distribution<float> dist(0, m_possibleFireTargets.Count);
+			std::uniform_real_distribution<float> dist(0, m_possibleFireFromTargets.Count);
 			fireIndex = (int) dist(mt) + .5f;
 		}
-		m_possibleFireTargets[fireIndex]->FireWeapon();
+		m_possibleFireFromTargets[fireIndex]->FireWeapon();
 	}
 }
 
 void Hivemind::CalculateFireFromTargets()
 {
-	m_possibleFireTargets.Clear();
+	m_possibleFireFromTargets.Clear();
 	for (int i = 10; i > -1; i--) {
 		for (int j = 4; j > -1; j--) {
 			auto e = Enemies[MathHelper::GetIndexFrom2DCoord(i, j, 11, 5)];
 			if (e != nullptr) {
-				m_possibleFireTargets.Add(e);
+				m_possibleFireFromTargets.Add(e);
 				break;
 			}
 		}
