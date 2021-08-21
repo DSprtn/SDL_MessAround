@@ -20,7 +20,7 @@ PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
 	AddComponent<Collider>(this, Transform);
 
 	m_timeSinceFired = .7f;
-	m_fireDelay = 0.0f;
+	m_fireDelay = .7f;
 	
 	AddTag("Player");
 }

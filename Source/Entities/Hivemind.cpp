@@ -16,38 +16,13 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 			m_enemiesLeft++;
 		}
 	}
+	CalculateFireFromTargets();
+	CalculateEnemySpeed();
 }
 
 void Hivemind::Update()
 {
 	Entity::Update();
-
-	m_timeSinceFired += Timer::DeltaTime;
-
-	bool wasOutsideWindow = false;
-
-	m_lastWindowCheck += Timer::DeltaTime;
-
-	for (int i = 0; i < Enemies.Count; i++) {
-		if (Enemies[i] != nullptr) {
-			if (m_lastWindowCheck > m_outsideWindowCheckCooldown) {
-				TransformComponent* t = Enemies[i]->Transform;
-				if (t->OutsideWindow() && !wasOutsideWindow) {
-					m_direction *= -1;
-					wasOutsideWindow = true;
-					m_lastWindowCheck = 0;
-					break;
-				}
-			}
-		}
-	}
-
-	float speed = 15;
-	if (m_enemiesLeft > 0) {
-		speed = speed / ((float)m_enemiesLeft / Enemies.Count);
-	}
-	speed *= m_direction;
-
 
 	if (m_enemiesLeft == 0) {
 		Delete();
@@ -55,46 +30,102 @@ void Hivemind::Update()
 		return;
 	}
 
+	UpdateAllEnemyTransforms();
+	FireFromValidEnemyAtRandomInterval();
+}
+
+void Hivemind::CalculateEnemySpeed()
+{
+	if (m_enemiesLeft > 0) {
+		m_velocity = 15 / ((float)m_enemiesLeft / Enemies.Count);
+	}
+}
+
+void Hivemind::UpdateAllEnemyTransforms()
+{
+	bool wasOutsideWindow = CollideWithWindowBounds();
 	for (int i = 0; i < Enemies.Count; i++) {
 		if (Enemies[i] != nullptr) {
 			TransformComponent* t = Enemies[i]->Transform;
-			t->SetPosition(t->PositionX + speed * Timer::DeltaTime, t->PositionY + 25 * wasOutsideWindow);
+			t->SetPosition(t->PositionX + m_velocity * m_direction * Timer::DeltaTime, t->PositionY + 25 * wasOutsideWindow);
 		}
 	}
+}
 
-	if (m_timeSinceFired > m_currentDelay) {
+void Hivemind::FireFromValidEnemyAtRandomInterval()
+{
+	m_timeSinceFired += Timer::DeltaTime;
+	if (m_timeSinceFired > m_currentFireDelay) {
 		FireFromRandomEnemy();
 		std::random_device rd;
 		std::mt19937 mt(rd());
 		std::uniform_real_distribution<float> dist(-m_fireDelayVariance, m_fireDelayVariance);
 		m_timeSinceFired = 0;
-		m_currentDelay = m_baseFireDelay + dist(mt);
+		m_currentFireDelay = m_baseFireDelay + dist(mt);
 	}
 }
 
-void Hivemind::FireFromRandomEnemy()
+bool Hivemind::CollideWithWindowBounds()
 {
-	std::vector<EnemyEntity*> possibleEnemies;
+	float minX = std::numeric_limits<float>::max();
+	float maxX = std::numeric_limits<float>::min();
 
-	for (int i = 10; i > -1; i--) {
-		for (int j = 4; j > -1; j--) {
-			auto e = Enemies[MathHelper::GetIndexFrom2DCoord(i, j, 11, 5)];
-			if (e != nullptr) {
-				possibleEnemies.push_back(e);
-				break;
+	float rectWidth = 1;
+
+	int windowSizeX = 0;
+	int windowSizeY = 0;
+	SDL_GetWindowSize(Engine::Instance->Window, &windowSizeX, &windowSizeY);
+
+	for (int i = 0; i < Enemies.Count; i++) {
+		if (Enemies[i] != nullptr) {
+			TransformComponent* t = Enemies[i]->Transform;
+			rectWidth = t->Rect.w;
+			float posX = t->PositionX;
+			if (minX > t->PositionX) {
+				minX = t->PositionX;
+			}
+			if (maxX < t->PositionX) {
+				maxX = t->PositionX;
 			}
 		}
 	}
 
-	if (possibleEnemies.size() > 0) {
+	if (minX - rectWidth / 2 < 0 && m_direction == -1) {
+		m_direction = 1;
+		return true;
+	}
+	else if (maxX + rectWidth / 2 > windowSizeX && m_direction == 1) {
+		m_direction = -1;
+		return true;
+	}
+	return false;
+}
+
+void Hivemind::FireFromRandomEnemy()
+{
+	if (m_possibleFireTargets.Count > 0) {
 		int fireIndex = 0;
-		if (possibleEnemies.size() > 1) {
+		if (m_possibleFireTargets.Count > 1) {
 			std::random_device rd;
 			std::mt19937 mt(rd());
-			std::uniform_real_distribution<float> dist(0, possibleEnemies.size());
+			std::uniform_real_distribution<float> dist(0, m_possibleFireTargets.Count);
 			fireIndex = (int) dist(mt) + .5f;
 		}
-		possibleEnemies[fireIndex]->FireWeapon();
+		m_possibleFireTargets[fireIndex]->FireWeapon();
+	}
+}
+
+void Hivemind::CalculateFireFromTargets()
+{
+	m_possibleFireTargets.Clear();
+	for (int i = 10; i > -1; i--) {
+		for (int j = 4; j > -1; j--) {
+			auto e = Enemies[MathHelper::GetIndexFrom2DCoord(i, j, 11, 5)];
+			if (e != nullptr) {
+				m_possibleFireTargets.Add(e);
+				break;
+			}
+		}
 	}
 }
 
@@ -102,4 +133,6 @@ void Hivemind::EnemyDied(EnemyEntity* e)
 {
 	m_enemiesLeft--;
 	Enemies[Enemies.GetIndex(e)] = nullptr;
+	CalculateFireFromTargets();
+	CalculateEnemySpeed();
 }
