@@ -9,7 +9,7 @@ class Collider : public Component
 public:
 	Collider(Entity* owner, TransformComponent* t);
 	virtual ~Collider();
-	TransformComponent* Transform;
+	const TransformComponent* Transform;
 
 	void Update() override {};
 };

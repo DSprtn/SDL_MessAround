@@ -10,8 +10,6 @@ SimpleMove::SimpleMove(Entity* owner, float speed) : Component(owner)
 
 void SimpleMove::Update()
 {
-	float delta = Timer::DeltaTime;
-
 	float xMovement = 0;
 
 	if (InputManager::Instance->KeyDown(SDL_SCANCODE_A)) {
@@ -21,5 +19,5 @@ void SimpleMove::Update()
 		xMovement += 1;
 	}
 
-	Transform->PositionX += xMovement * delta * Speed;
+	Transform->PositionX += xMovement * Timer::DeltaTime * Speed;
 }

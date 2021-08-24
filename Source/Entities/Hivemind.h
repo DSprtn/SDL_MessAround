@@ -14,7 +14,7 @@ public:
 
 private:
 	void FireFromValidEnemyAtRandomInterval();
-	void FireFromRandomEnemy();
+	void FireFromRandomEnemy() const;
 	bool CollideWithWindowBounds();
 	void CalculateEnemySpeed();
 	void UpdateAllEnemyTransforms();
@@ -25,8 +25,8 @@ private:
 	float m_direction = 1;
 	float m_velocity = 15;
 	float m_timeSinceFired = 0;
-	float m_baseFireDelay = 1;
-	float m_fireDelayVariance = 0.5f;
+	const float m_baseFireDelay = 1;
+	const float m_fireDelayVariance = 0.5f;
 	float m_currentFireDelay = 1;
 	int m_enemiesLeft = 0;
 };

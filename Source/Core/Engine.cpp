@@ -32,6 +32,7 @@ void Engine::Init()
 
 void Engine::Shutdown()
 {
+	delete CurrentWorld;
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();

@@ -47,7 +47,7 @@ void Hivemind::UpdateAllEnemyTransforms()
 	for (int i = 0; i < Enemies.Count; i++) {
 		if (Enemies[i] != nullptr) {
 			TransformComponent* t = Enemies[i]->Transform;
-			t->SetPosition(t->PositionX + m_velocity * m_direction * Timer::DeltaTime, t->PositionY + 25 * wasOutsideWindow);
+			t->SetPosition(t->PositionX + m_velocity * m_direction * Timer::DeltaTime, t->PositionY + 64 * wasOutsideWindow);
 		}
 	}
 }
@@ -70,8 +70,6 @@ bool Hivemind::CollideWithWindowBounds()
 	float minX = std::numeric_limits<float>::max();
 	float maxX = std::numeric_limits<float>::min();
 
-	float rectWidth = 1;
-
 	int windowSizeX = 0;
 	int windowSizeY = 0;
 	SDL_GetWindowSize(Engine::Instance->Window, &windowSizeX, &windowSizeY);
@@ -79,7 +77,7 @@ bool Hivemind::CollideWithWindowBounds()
 	for (int i = 0; i < Enemies.Count; i++) {
 		if (Enemies[i] != nullptr) {
 			TransformComponent* t = Enemies[i]->Transform;
-			rectWidth = t->Rect.w;
+			float rectWidth = t->Rect.w;
 			float posX = t->PositionX;
 			if (minX > posX) {
 				minX = posX;
@@ -87,21 +85,22 @@ bool Hivemind::CollideWithWindowBounds()
 			if (maxX < posX) {
 				maxX = posX;
 			}
-		}
-	}
 
-	if (minX - rectWidth / 2 < 0 && m_direction == -1) {
-		m_direction = 1;
-		return true;
-	}
-	else if (maxX + rectWidth / 2 > windowSizeX && m_direction == 1) {
-		m_direction = -1;
-		return true;
+			if (minX - rectWidth / 2 < 0 && m_direction == -1) {
+				m_direction = 1;
+				return true;
+			}
+
+			if (maxX + rectWidth / 2 > windowSizeX && m_direction == 1) {
+				m_direction = -1;
+				return true;
+			}
+		}
 	}
 	return false;
 }
 
-void Hivemind::FireFromRandomEnemy()
+void Hivemind::FireFromRandomEnemy() const
 {
 	if (m_possibleFireFromTargets.Count > 0) {
 		int fireIndex = 0;
