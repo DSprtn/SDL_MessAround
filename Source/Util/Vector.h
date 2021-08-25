@@ -143,7 +143,6 @@ public:
 		for (++index; index < Count; index++) {
 			m_elements[index - 1] = std::move(m_elements[index]);
 		}
-		m_elements[index].~T();
 		Count--;
 	}
 
