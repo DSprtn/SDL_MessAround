@@ -58,14 +58,12 @@ public:
 			Vector<T> tmp(copy);
 			swap(tmp);
 		}
-		std::cout << this << " " << typeid(this).name() << "Copy assignment!" << std::endl;
 		return *this;
 	}
 
 	Vector& operator=(Vector&& move)
 	{
 		swap(move);
-		std::cout << this << " " << typeid(this).name() << "Move assignment!" << std::endl;
 		return *this;
 	}
 
