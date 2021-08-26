@@ -42,7 +42,7 @@ void PlayerEntity::Delete() {
 
 void PlayerEntity::FireWeapon()
 {
-	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Enemy", -1000.0f, 0.0f);
+	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Friendly", "Enemy", -1000.0f, 0.0f);
 	auto bulletTransform = bullet->GetComponent<TransformComponent>();
 	bulletTransform->SetPosition(Transform->PositionX,( Transform->PositionY - 10 - Transform->Rect.h / 2));
 }

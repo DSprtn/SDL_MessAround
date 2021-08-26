@@ -6,7 +6,7 @@
 #include <Timer.h>
 #include <DestroyAfterLifetime.h>
 
-BulletEntity::BulletEntity(std::string name, std::string targetTag, float yVel, float xVel) : Entity(name, 6, 23)
+BulletEntity::BulletEntity(std::string name, std::string srcTag, std::string targetTag, float yVel, float xVel) : Entity(name, 6, 23)
 {
 	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\laser.png");
 	AddComponent<Collider>(this, Transform);
@@ -15,7 +15,7 @@ BulletEntity::BulletEntity(std::string name, std::string targetTag, float yVel, 
 	xVelocity = xVel;
 	yVelocity = yVel;
 	
-	AddTag("Bullet");
+	AddTag(srcTag);
 	m_targetTag = targetTag;
 }
 
@@ -32,7 +32,8 @@ void BulletEntity::Update()
 
 void BulletEntity::OnCollide(Entity* other)
 {
-	if (other->HasTag(m_targetTag)) {
+	// If we collide with multiple entities in a single physics update we only want to destroy one
+	if (!MarkedForDeletion && other->HasTag(m_targetTag)) {
 		other->Delete();
 		Delete();
 	}

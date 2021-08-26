@@ -5,13 +5,38 @@
 #include <EnemyDestroyedParticle.h>
 #include <BulletEntity.h>
 #include <Hivemind.h>
+#include <AnimateByDistance.h>
 
-EnemyEntity::EnemyEntity(std::string name, Hivemind* hive) : Entity(name, 64, 64)
+EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Entity(name, 64, 64)
 {
 	m_hive = hive;
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\space_invader.png");
+	AddComponent<RenderComponent>(this, Engine::Instance->Renderer);
 	AddComponent<Collider>(this, Transform);
 	AddTag("Enemy");
+	m_scoreForKill = 10;
+	m_type = type;
+	Vector<std::string> textures;
+	float distAnim = 16;
+	switch (type) {
+		case EnemyType::Squid:
+			m_scoreForKill = 30;
+			distAnim = 10;
+			textures.Add(".\\Assets\\InvaderC1.png");
+			textures.Add(".\\Assets\\InvaderC2.png");
+			break;
+		case EnemyType::Normal:
+			textures.Add(".\\Assets\\InvaderB1.png");
+			textures.Add(".\\Assets\\InvaderB2.png");
+			m_scoreForKill = 20;
+			break;
+		case EnemyType::Cloud:
+			textures.Add(".\\Assets\\InvaderA1.png");
+			textures.Add(".\\Assets\\InvaderA2.png");
+			distAnim = 14;
+			m_scoreForKill = 10;
+			break;
+	}
+	AddComponent<AnimateByDistance>(this, Transform, textures, distAnim);
 }
 
 EnemyEntity::~EnemyEntity()
@@ -23,7 +48,7 @@ EnemyEntity::~EnemyEntity()
 
 void EnemyEntity::FireWeapon()
 {
-	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Player", 800.0f, 0.0f);
+	auto bullet = Engine::Instance->CurrentWorld->CreateEntity<BulletEntity>("FiredBullet", "Enemy", "Player", 800.0f, 0.0f);
 	auto bulletTransform = bullet->GetComponent<TransformComponent>();
 	bulletTransform->SetPosition(Transform->PositionX, (Transform->PositionY + Transform->Rect.h / 2));
 }

@@ -8,10 +8,17 @@
 Hivemind::Hivemind(std::string name) : Entity(name)
 {
 	for (int i = 0; i < 5; i++) {
+		EnemyEntity::EnemyType type = EnemyEntity::EnemyType::Squid;
+		if (i > 0) {
+			type = EnemyEntity::EnemyType::Normal;
+		}
+		if (i > 2) {
+			type = EnemyEntity::EnemyType::Cloud;
+		}
 		for (int j = 0; j < 11; j++) {
-			auto e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy", this);
+			auto e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy", this, type);
 			TransformComponent* t = e->GetComponent<TransformComponent>();
-			t->SetPosition(150 + j * 70, 100 + i * 64);
+			t->SetPosition(150 + j * 70, 140 + i * 64);
 			Enemies.Add(e);
 			m_enemiesLeft++;
 		}

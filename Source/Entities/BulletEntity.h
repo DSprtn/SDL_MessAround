@@ -1,11 +1,12 @@
 #pragma once
-#include <Entity.h>
-#include <TransformComponent.h>
+#include "Entity.h"
+#include "TransformComponent.h"
+
 
 class BulletEntity : public Entity
 {
 public:
-	BulletEntity(std::string name, std::string targetTag, float xVel, float yVel);
+	BulletEntity(std::string name, std::string srcTag, std::string targetTag, float xVel, float yVel);
 	virtual ~BulletEntity();
 
 	void Update() override;
