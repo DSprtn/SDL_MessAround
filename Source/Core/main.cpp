@@ -24,17 +24,17 @@ int main(int argc, char* args[]) {
 
 	const float timeScale = 1.0f;
 
-	const int targetFramerate = 300;
-	constexpr float minDeltaTime = 1.0f / targetFramerate;
+	const int targetFramerate = 145;
+	constexpr double minDeltaTime = 1.0f / targetFramerate;
 
 	auto now = std::chrono::high_resolution_clock::now();
 	auto last = std::chrono::high_resolution_clock::now();
 
 	while (engine.IsRunning) {
 		now = std::chrono::high_resolution_clock::now();
-		auto elapsed = std::chrono::high_resolution_clock::now() - last;
-		const long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
-		Timer::DeltaTime = ((long double)microseconds / 1000000);
+		const auto elapsed = std::chrono::high_resolution_clock::now() - last;
+		const unsigned long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+		Timer::DeltaTime = timeScale * ((double)microseconds / 1000000);
 
 		// Rudimentary framerate cap
 		if (Timer::DeltaTime < minDeltaTime) {
