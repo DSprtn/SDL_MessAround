@@ -6,11 +6,15 @@ class Entity;
 class Component
 {
 public:
-	Component(Entity* Owner);
+	Component(Entity* owner)
+	{
+		m_Owner = owner;
+	}
 	virtual ~Component() {};
 
 	virtual void Update() = 0;
 	virtual void LateUpdate() {};
+	virtual void Start() {};
 	virtual void OnRender() {};
 	virtual void OnCollide(Entity* B) {};
 

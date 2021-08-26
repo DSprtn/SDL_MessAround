@@ -8,7 +8,8 @@ public:
 	World() = default;
 	~World();
 
-	Vector<Entity*> Entities;
+	Vector<Entity*> Entities{ 128 };
+	Vector<Entity*> InstantiatedEntities{ 64 };
 
 	void Update();
 	void LateUpdate();
@@ -18,11 +19,15 @@ public:
 	template <typename T, class... Args>
 	T* CreateEntity(Args&&... args) {
 		T* entity(new T(std::forward<Args>(args)...));
-		Entities.Add(entity);
+		InstantiatedEntities.Add(entity);
 		return entity;
 	}
 
 private:
+	void AddInstantiatedEntities();
+	void CleanupDeletedEntities();
+
+
 	World(const World& that);
 	World& operator=(const World& that);
 };

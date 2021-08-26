@@ -19,6 +19,13 @@ Entity::~Entity()
 	}
 }
 
+void Entity::Start()
+{
+	for (int i = 0; i < Components.Count; i++) {
+		Components[i]->Start();
+	}
+}
+
 void Entity::Update()
 {
 	for (int i = 0; i < Components.Count; i++) {

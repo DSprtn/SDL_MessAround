@@ -5,10 +5,15 @@
 Collider::Collider(Entity* owner, TransformComponent* t) : Component(owner)
 {
 	Transform = t;
-	PhysicsSystem::Instance->RegisterCollider(this);
+	
 }
 
 Collider::~Collider()
 {
 	PhysicsSystem::Instance->UnregisterCollider(this);
+}
+
+void Collider::Start()
+{
+	PhysicsSystem::Instance->RegisterCollider(this);
 }

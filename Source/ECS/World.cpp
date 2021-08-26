@@ -7,16 +7,31 @@ World::~World()
 
 void World::Update()
 {
+	CleanupDeletedEntities();
+	AddInstantiatedEntities();
+
+	for (int i = 0; i < Entities.Count; i++) {
+		Entities[i]->Update();
+	}
+}
+
+void World::AddInstantiatedEntities()
+{
+	for (int i = 0; i < InstantiatedEntities.Count; i++) {
+		InstantiatedEntities[i]->Start();
+		Entities.Add(InstantiatedEntities[i]);
+	}
+	InstantiatedEntities.Clear();
+}
+
+void World::CleanupDeletedEntities()
+{
 	for (int i = 0; i < Entities.Count; i++) {
 		if (Entities[i]->MarkedForDeletion) {
 			delete Entities[i];
 			Entities.EraseAt(i);
 			i--;
 		}
-	}
-
-	for (int i = 0; i < Entities.Count; i++) {
-		Entities[i]->Update();
 	}
 }
 

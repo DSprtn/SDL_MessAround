@@ -22,6 +22,7 @@ public:
 	Vector<Component*> Components;
 	std::unordered_set<std::string> Tags;
 
+	virtual void Start();
 	virtual void Update();
 	virtual void LateUpdate();
 	virtual void OnRender();
