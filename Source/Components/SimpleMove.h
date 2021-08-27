@@ -10,6 +10,7 @@ public:
 
 	float Speed = 10;
 
+	void Start() override {};
 	void Update() override;
 
 private:

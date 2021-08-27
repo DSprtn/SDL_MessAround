@@ -10,8 +10,9 @@ public:
 	RenderComponent(Entity* owner, SDL_Renderer* renderer, std::string TexturePath);
 	RenderComponent(Entity* owner, SDL_Renderer* renderer);
 
-	void Update() override {};
+	void Start() override {};
 	void OnRender() override;
+	void CenterRect();
 	void SetTexture(SDL_Texture* tex);
 
 private:

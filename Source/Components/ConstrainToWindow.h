@@ -10,7 +10,7 @@ class ConstrainToWindow : public Component
 public:
 	ConstrainToWindow(Entity* owner, SDL_Window* window, TransformComponent* t);
 
-	void Update() override {};
+	void Start() override {};
 	void LateUpdate() override;
 
 private:

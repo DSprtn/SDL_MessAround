@@ -6,6 +6,7 @@
 #include <BulletEntity.h>
 #include <Hivemind.h>
 #include <AnimateByDistance.h>
+#include <GameState.h>
 
 EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Entity(name, 64, 64)
 {
@@ -16,23 +17,21 @@ EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Ent
 	m_scoreForKill = 10;
 	m_type = type;
 	Vector<std::string> textures;
-	float distAnim = 16;
+	const float distAnim = 16;
 	switch (type) {
 		case EnemyType::Squid:
 			m_scoreForKill = 30;
-			distAnim = 10;
-			textures.Add(".\\Assets\\InvaderC1.png");
-			textures.Add(".\\Assets\\InvaderC2.png");
+			textures.Add("Assets/InvaderC1.png");
+			textures.Add("Assets/InvaderC2.png");
 			break;
 		case EnemyType::Normal:
-			textures.Add(".\\Assets\\InvaderB1.png");
-			textures.Add(".\\Assets\\InvaderB2.png");
+			textures.Add("Assets/InvaderB1.png");
+			textures.Add("Assets/InvaderB2.png");
 			m_scoreForKill = 20;
 			break;
 		case EnemyType::Cloud:
-			textures.Add(".\\Assets\\InvaderA1.png");
-			textures.Add(".\\Assets\\InvaderA2.png");
-			distAnim = 14;
+			textures.Add("Assets/InvaderA1.png");
+			textures.Add("Assets/InvaderA2.png");
 			m_scoreForKill = 10;
 			break;
 	}
@@ -57,4 +56,5 @@ void EnemyEntity::Delete()
 {
 	Entity::Delete();
 	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", Transform->PositionX,Transform->PositionY, 48, 48);
+	GameState::Instance->scoreboard->IncrementScore(m_scoreForKill);
 }

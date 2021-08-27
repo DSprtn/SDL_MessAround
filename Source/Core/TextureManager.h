@@ -4,6 +4,7 @@
 class TextureManager
 {
 public:
+	TextureManager() = delete;
 	static std::unordered_map<std::string, SDL_Texture*> TextureLookup;
 	static SDL_Texture* GetTexture(std::string Path, SDL_Renderer* Renderer);
 private:

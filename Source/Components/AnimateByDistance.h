@@ -12,6 +12,8 @@ public:
 	AnimateByDistance(Entity* owner, TransformComponent* t, Vector<std::string> Textures, float switchDistance);
 	virtual ~AnimateByDistance() {};
 
+
+	void Start() override {};
 	void Update() override;
 
 protected:

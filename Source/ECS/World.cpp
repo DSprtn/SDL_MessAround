@@ -18,8 +18,8 @@ void World::Update()
 void World::AddInstantiatedEntities()
 {
 	for (int i = 0; i < InstantiatedEntities.Count; i++) {
-		InstantiatedEntities[i]->Start();
 		Entities.Add(InstantiatedEntities[i]);
+		InstantiatedEntities[i]->Start();
 	}
 	InstantiatedEntities.Clear();
 }
@@ -51,5 +51,8 @@ void World::OnRender()
 
 void World::ClearAllEntities()
 {
+	for (int i = 0; i < Entities.Count; i++) {
+		delete Entities[i];
+	}
 	Entities.Clear();
 }

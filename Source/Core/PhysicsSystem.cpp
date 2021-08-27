@@ -19,10 +19,9 @@ void PhysicsSystem::Update()
 	for (int i = 0; i < Colliders.Count; i++) {
 		for (int j = 0; j < Colliders.Count; j++) {
 			if (i != j) {
-				const SDL_Rect A = Colliders[i]->Transform->Rect;
-				const SDL_Rect B = Colliders[j]->Transform->Rect;
-				
-				if (SDL_HasIntersection(&A, &B)) {
+				const SDL_Rect* A = &Colliders[i]->Transform->Rect;
+				const SDL_Rect* B = &Colliders[j]->Transform->Rect;
+				if (SDL_HasIntersection(A, B)) {
 					Colliders[i]->m_Owner->OnCollide(Colliders[j]->m_Owner);
 					Colliders[j]->m_Owner->OnCollide(Colliders[i]->m_Owner);
 				}

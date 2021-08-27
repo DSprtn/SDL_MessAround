@@ -18,7 +18,7 @@ Hivemind::Hivemind(std::string name) : Entity(name)
 		for (int j = 0; j < 11; j++) {
 			auto e = Engine::Instance->CurrentWorld->CreateEntity<EnemyEntity>("Enemy", this, type);
 			TransformComponent* t = e->GetComponent<TransformComponent>();
-			t->SetPosition(150 + j * 70, 140 + i * 64);
+			t->SetPosition(150 + j * 70, 180 + i * 64);
 			Enemies.Add(e);
 			m_enemiesLeft++;
 		}

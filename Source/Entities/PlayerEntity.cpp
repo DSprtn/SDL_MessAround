@@ -14,7 +14,7 @@
 PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
 {
 	Transform->SetPosition(400, 900);
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\ship.png");
+	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, "Assets/ship.png");
 	AddComponent<SimpleMove>(this, 400);
 	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, Transform);
 	AddComponent<Collider>(this, Transform);

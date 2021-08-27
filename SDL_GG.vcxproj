@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\include;S:\Git_Projects\_learning\SDL_GG\lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\lib\x86;S:\Git_Projects\_learning\SDL_GG\lib\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_ttf-2.0.15\include;S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\include;S:\Git_Projects\_learning\SDL_GG\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>S:\Git_Projects\_learning\SDL_GG\lib\SDL2_ttf-2.0.15\lib\x86;S:\Git_Projects\_learning\SDL_GG\lib\SDL2_image-2.0.5\lib\x86;S:\Git_Projects\_learning\SDL_GG\lib\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -93,12 +93,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>S:\Git_Projects\_learning\SDL_GG\Source\Entities;S:\Git_Projects\_learning\SDL_GG\Source\ECS;S:\Git_Projects\_learning\SDL_GG\Source\Util;S:\Git_Projects\_learning\SDL_GG\Source\Components;S:\Git_Projects\_learning\SDL_GG\Source;S:\Git_Projects\_learning\SDL_GG\Source\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>S:\Git_Projects\_learning\SDL_GG\Source\Interfaces;S:\Git_Projects\_learning\SDL_GG\Source\Entities;S:\Git_Projects\_learning\SDL_GG\Source\ECS;S:\Git_Projects\_learning\SDL_GG\Source\Util;S:\Git_Projects\_learning\SDL_GG\Source\Components;S:\Git_Projects\_learning\SDL_GG\Source;S:\Git_Projects\_learning\SDL_GG\Source\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,6 +148,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Entities\Scoreboard.cpp" />
+    <ClCompile Include="Source\Components\Damageable.cpp" />
+    <ClCompile Include="Source\Core\GameAssets.cpp" />
+    <ClCompile Include="Source\Entities\GameState.cpp" />
+    <ClCompile Include="Source\Components\AnimateByDistance.cpp" />
     <ClCompile Include="Source\Entities\Hivemind.cpp" />
     <ClCompile Include="Source\Entities\EnemyDestroyedParticle.cpp" />
     <ClCompile Include="Source\Components\DestroyAfterLifetime.cpp" />
@@ -161,7 +166,6 @@
     <ClCompile Include="Source\Components\SimpleMove.cpp" />
     <ClCompile Include="Source\Components\RenderComponent.cpp" />
     <ClCompile Include="Source\Core\InputManager.cpp" />
-    <ClCompile Include="Source\ECS\Component.cpp" />
     <ClCompile Include="Source\ECS\Entity.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
     <ClCompile Include="Source\Core\main.cpp" />
@@ -169,8 +173,15 @@
     <ClCompile Include="Source\Core\TextureManager.cpp" />
     <ClCompile Include="Source\Components\TransformComponent.cpp" />
     <ClCompile Include="Source\Util\Timer.cpp" />
+    <ClCompile Include="Source\Entities\UFOEntity.cpp" />
+    <ClCompile Include="Source\Components\TextDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Entities\Scoreboard.h" />
+    <ClInclude Include="Source\Core\GameAssets.h" />
+    <ClInclude Include="Source\Components\Damageable.h" />
+    <ClInclude Include="Source\Entities\GameState.h" />
+    <ClInclude Include="Source\Components\AnimateByDistance.h" />
     <ClInclude Include="Source\Entities\Hivemind.h" />
     <ClInclude Include="Source\Entities\EnemyDestroyedParticle.h" />
     <ClInclude Include="Source\Components\DestroyAfterLifetime.h" />
@@ -192,6 +203,11 @@
     <ClInclude Include="Source\Components\TransformComponent.h" />
     <ClInclude Include="Source\Util\Timer.h" />
     <ClInclude Include="Source\Util\Vector.h" />
+    <ClInclude Include="Source\Entities\UFOEntity.h" />
+    <ClInclude Include="Source\Components\TextDisplay.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\space_invaders.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

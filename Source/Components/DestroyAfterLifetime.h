@@ -6,6 +6,8 @@ class DestroyAfterLifetime : public Component
 {
 public:
 	DestroyAfterLifetime(Entity* owner, float lifetime);
+
+	void Start() override {};
 	void Update() override;
 
 protected:

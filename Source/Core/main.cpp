@@ -15,9 +15,13 @@
 #include <Hivemind.h>
 #include <MathHelper.h>
 #include <chrono>
+#include "GameAssets.h"
+#include <GameState.h>
 
 int main(int argc, char* args[]) {
 	Engine engine;
+	GameAssets::LoadAll();
+	GameState gs;
 
 	engine.CurrentWorld->CreateEntity<PlayerEntity>("Player");
 	engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");

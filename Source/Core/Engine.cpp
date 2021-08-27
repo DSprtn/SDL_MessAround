@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SDL_image.h>
 #include <TextureManager.h>
+#include <SDL_ttf.h>
+#include <exception>
 
 
 Engine::Engine() {
@@ -19,6 +21,9 @@ Engine* Engine::Instance = nullptr;
 void Engine::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+		if (TTF_Init() != 0) {
+			throw std::exception("Failed to initialize font system!");
+		}
 		CurrentWorld = new World();
 		Window = SDL_CreateWindow("SpayseInvaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 1024, SDL_WINDOW_SHOWN);
 

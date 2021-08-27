@@ -24,4 +24,6 @@ void TransformComponent::SetPosition(float x, float y)
 {
 	PositionX = x;
 	PositionY = y;
+	Rect.x = PositionX - Rect.w / 2;
+	Rect.y = PositionY - Rect.h / 2;
 }

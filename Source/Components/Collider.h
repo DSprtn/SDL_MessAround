@@ -11,8 +11,6 @@ public:
 	virtual ~Collider();
 	const TransformComponent* Transform;
 
-
 	void Start() override;
-	void Update() override {};
 };
 

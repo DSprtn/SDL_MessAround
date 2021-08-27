@@ -5,7 +5,6 @@
 Collider::Collider(Entity* owner, TransformComponent* t) : Component(owner)
 {
 	Transform = t;
-	
 }
 
 Collider::~Collider()

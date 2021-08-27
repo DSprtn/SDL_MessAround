@@ -8,7 +8,7 @@
 
 BulletEntity::BulletEntity(std::string name, std::string srcTag, std::string targetTag, float yVel, float xVel) : Entity(name, 6, 23)
 {
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\laser.png");
+	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, "Assets/laser.png");
 	AddComponent<Collider>(this, Transform);
 	AddComponent<DestroyAfterLifetime>(this, 1.5f);
 

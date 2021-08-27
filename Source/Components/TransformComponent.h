@@ -11,7 +11,7 @@ class TransformComponent : public Component
 	public:
 		TransformComponent(Entity* owner, int sizeX, int sizeY);
 
-		void Update() override {};
+		void Start() override {};
 		void SetPosition(float x, float y);
 		bool OutsideWindow();
 
