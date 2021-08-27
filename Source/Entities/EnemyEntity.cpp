@@ -6,7 +6,7 @@
 #include <BulletEntity.h>
 #include <Hivemind.h>
 #include <AnimateByDistance.h>
-#include <GameState.h>
+#include <GameGlobals.h>
 
 EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Entity(name, 64, 64)
 {
@@ -56,5 +56,5 @@ void EnemyEntity::Delete()
 {
 	Entity::Delete();
 	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", Transform->PositionX,Transform->PositionY, 48, 48);
-	GameState::Instance->scoreboard->IncrementScore(m_scoreForKill);
+	GameGlobals::Instance->scoreboard->IncrementScore(m_scoreForKill);
 }

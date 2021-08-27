@@ -1,10 +1,10 @@
-#include "GameState.h"
+#include "GameGlobals.h"
 #include "Entity.h"
 #include <exception>
 #include "Engine.h"
 
-GameState* GameState::Instance = nullptr;
-GameState::GameState() : Entity("GameState")
+GameGlobals* GameGlobals::Instance = nullptr;
+GameGlobals::GameGlobals() : Entity("GameGlobals")
 {
 	if (Instance != nullptr) {
 		throw std::exception("Duplicate gamestate class!");

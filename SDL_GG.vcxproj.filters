@@ -81,7 +81,7 @@
     <ClCompile Include="Source\Components\AnimateByDistance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Entities\GameState.cpp">
+    <ClCompile Include="Source\Entities\GameGlobals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\Damageable.cpp">
@@ -167,7 +167,7 @@
     <ClInclude Include="Source\Components\AnimateByDistance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Entities\GameState.h">
+    <ClInclude Include="Source\Entities\GameGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Components\Damageable.h">

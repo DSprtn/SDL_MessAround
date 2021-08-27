@@ -2,11 +2,11 @@
 #include "Entity.h"
 #include <Scoreboard.h>
 
-class GameState : public Entity
+class GameGlobals : public Entity
 {
 public:
-	GameState();
-	static GameState* Instance;
+	GameGlobals();
+	static GameGlobals* Instance;
 
 
 	Scoreboard* scoreboard;

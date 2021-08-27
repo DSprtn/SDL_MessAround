@@ -151,7 +151,7 @@
     <ClCompile Include="Source\Entities\Scoreboard.cpp" />
     <ClCompile Include="Source\Components\Damageable.cpp" />
     <ClCompile Include="Source\Core\GameAssets.cpp" />
-    <ClCompile Include="Source\Entities\GameState.cpp" />
+    <ClCompile Include="Source\Entities\GameGlobals.cpp" />
     <ClCompile Include="Source\Components\AnimateByDistance.cpp" />
     <ClCompile Include="Source\Entities\Hivemind.cpp" />
     <ClCompile Include="Source\Entities\EnemyDestroyedParticle.cpp" />
@@ -180,7 +180,7 @@
     <ClInclude Include="Source\Entities\Scoreboard.h" />
     <ClInclude Include="Source\Core\GameAssets.h" />
     <ClInclude Include="Source\Components\Damageable.h" />
-    <ClInclude Include="Source\Entities\GameState.h" />
+    <ClInclude Include="Source\Entities\GameGlobals.h" />
     <ClInclude Include="Source\Components\AnimateByDistance.h" />
     <ClInclude Include="Source\Entities\Hivemind.h" />
     <ClInclude Include="Source\Entities\EnemyDestroyedParticle.h" />
