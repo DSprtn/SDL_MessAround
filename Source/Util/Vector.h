@@ -146,7 +146,7 @@ public:
 		Count--;
 	}
 
-	void Reserve(unsigned int size)
+	void Reserve(int size)
 	{
 		if (size < m_size) {
 			return;
