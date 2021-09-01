@@ -27,14 +27,14 @@ int main(int argc, char* args[]) {
 	Entity* player = engine.CurrentWorld->CreateEntity<PlayerEntity>();
 	player->Transform->SetPosition(640, 900);
 	Entity* shield = engine.CurrentWorld->CreateEntity<Shield>();
-	shield->Transform->SetPosition(100, 700);
+	shield->Transform->SetPosition(100, 740);
 	Entity* shield2 = engine.CurrentWorld->CreateEntity<Shield>();
-	shield2->Transform->SetPosition(374, 700);
+	shield2->Transform->SetPosition(374, 740);
 	Entity* shield3 = engine.CurrentWorld->CreateEntity<Shield>();
-	shield3->Transform->SetPosition(648, 700);
+	shield3->Transform->SetPosition(648, 740);
 	Entity* shield4 = engine.CurrentWorld->CreateEntity<Shield>();
-	shield4->Transform->SetPosition(924, 700);
-	//engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
+	shield4->Transform->SetPosition(924, 740);
+	engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
 
 	const float timeScale = 1.0f;
 

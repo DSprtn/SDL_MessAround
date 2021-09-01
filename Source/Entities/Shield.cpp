@@ -16,8 +16,6 @@ Shield::Shield() : Entity("Shield", 128,128)
 
 void Shield::OnHit(float posX, float posY, float radius)
 {
-	
-
 	int pixelHitPointX = 0;
 	int pixelHitpointY = 0;
 
@@ -29,8 +27,6 @@ void Shield::OnHit(float posX, float posY, float radius)
 
 	MathHelper::GetTextureCoordFromWorldPosClamped(m_surface, Transform, posX, posY, pixelHitPointX, pixelHitpointY);
 
-
-
 	SDL_LockSurface(m_surface);
 	Uint32* tex = (Uint32*)m_surface->pixels;
 
@@ -40,10 +36,7 @@ void Shield::OnHit(float posX, float posY, float radius)
 		for (int y = 0 - worldSpacePixelDiameter; y < worldSpacePixelDiameter; y++) {
 			int xCoord = pixelHitPointX + x;
 			int yCoord = pixelHitpointY + y;
-
-			// Check array bounds
 			if (xCoord >= 0 && xCoord < maxW && yCoord >= 0 && yCoord < maxH) {
-
 				// Delete pixels in a 'circle' within the given radius
 				float magnitude = MathHelper::GetMagnitudeFrom2DCoords(std::abs(x), std::abs(y));
 				if (magnitude < worldSpacePixelDiameter) {
@@ -51,7 +44,7 @@ void Shield::OnHit(float posX, float posY, float radius)
 					std::mt19937 mt(rd());
 					std::uniform_real_distribution<float> delVal(0, 1);
 					
-					if (delVal(mt) < 1 - (std::max(0.0f, magnitude - worldSpacePixelDiameter / 3) / worldSpacePixelDiameter)) {
+					if (delVal(mt) < 1 - (std::max(0.0f, magnitude - worldSpacePixelDiameter / 2) / worldSpacePixelDiameter)) {
 						const int index = MathHelper::GetIndexFrom2DCoord(xCoord, yCoord, m_surface->w, m_surface->h);
 						Uint32* pixel = tex + index;
 						// Pixel data is encoded as 4 bytes within a 32 bit int (RGBA 0-255, by default.) 
@@ -75,14 +68,23 @@ void Shield::OnCollide(Entity* entity)
 	if (entity->HasTag("Projectile")) {
 		float outX = 0;
 		float outY = 0;
-		if (CollideRectPerPixel(entity, outX, outY)) {
+		if (CollideWithRectAndGetCollisionPoint(entity, outX, outY)) {
 			entity->Delete();
 			OnHit(outX, outY, 32);
 		}
 	}
+
+	if (entity->HasTag("Enemy")) {
+		float outX = 0;
+		float outY = 0;
+		CollideWithRectAndGetCollisionPoint(entity, outX, outY);
+		OnHit(outX, outY, 1);
+	}
+
 }
 
-bool Shield::CollideRectPerPixel(Entity* other, float& outX, float& outY)
+// Returns first collision point that it encounters. Only really useful for entities just entering eachother's collision.
+bool Shield::CollideWithRectAndGetCollisionPoint(Entity* other, float& outX, float& outY)
 {
 	TransformComponent* otherT = other->Transform;
 

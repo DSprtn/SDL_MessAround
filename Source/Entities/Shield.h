@@ -15,7 +15,7 @@ public:
 	void OnCollide(Entity* entity) override;
 
 
-	bool CollideRectPerPixel(Entity* other, float &outX, float &outY);
+	bool CollideWithRectAndGetCollisionPoint(Entity* other, float &outX, float &outY);
 
 protected:
 	RenderComponent* m_renderer;
