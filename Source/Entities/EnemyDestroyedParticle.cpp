@@ -6,7 +6,7 @@
 
 EnemyDestroyedParticle::EnemyDestroyedParticle(std::string name, float posX, float posY, int sizeX, int sizeY) : Entity(name, sizeX, sizeY)
 {
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, ".\\.\\Assets\\explosion.png");
+	AddComponent<RenderComponent>(Engine::Instance->Renderer, ".\\.\\Assets\\explosion.png");
 	Transform->SetPosition(posX,posY);
-	AddComponent<DestroyAfterLifetime>(this, 0.3f);
+	AddComponent<DestroyAfterLifetime>(0.3f);
 }

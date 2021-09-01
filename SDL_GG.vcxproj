@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Entities\Shield.cpp" />
     <ClCompile Include="Source\Entities\Scoreboard.cpp" />
     <ClCompile Include="Source\Components\Damageable.cpp" />
     <ClCompile Include="Source\Core\GameAssets.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Source\Components\TextDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Entities\Shield.h" />
     <ClInclude Include="Source\Entities\Scoreboard.h" />
     <ClInclude Include="Source\Core\GameAssets.h" />
     <ClInclude Include="Source\Components\Damageable.h" />

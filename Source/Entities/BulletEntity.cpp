@@ -8,14 +8,15 @@
 
 BulletEntity::BulletEntity(std::string name, std::string srcTag, std::string targetTag, float yVel, float xVel) : Entity(name, 6, 23)
 {
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, "Assets/laser.png");
-	AddComponent<Collider>(this, Transform);
-	AddComponent<DestroyAfterLifetime>(this, 1.5f);
+	AddComponent<RenderComponent>(Engine::Instance->Renderer, "Assets/laser.png");
+	AddComponent<Collider>(Transform);
+	AddComponent<DestroyAfterLifetime>(1.5f);
 
 	xVelocity = xVel;
 	yVelocity = yVel;
 	
 	AddTag(srcTag);
+	AddTag("Projectile");
 	m_targetTag = targetTag;
 }
 

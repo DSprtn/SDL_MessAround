@@ -17,14 +17,24 @@
 #include <chrono>
 #include "GameAssets.h"
 #include <GameGlobals.h>
+#include <Shield.h>
 
 int main(int argc, char* args[]) {
 	Engine engine;
 	GameAssets::LoadAll();
 	GameGlobals gs;
 
-	engine.CurrentWorld->CreateEntity<PlayerEntity>("Player");
-	engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
+	Entity* player = engine.CurrentWorld->CreateEntity<PlayerEntity>();
+	player->Transform->SetPosition(640, 900);
+	Entity* shield = engine.CurrentWorld->CreateEntity<Shield>();
+	shield->Transform->SetPosition(100, 700);
+	Entity* shield2 = engine.CurrentWorld->CreateEntity<Shield>();
+	shield2->Transform->SetPosition(374, 700);
+	Entity* shield3 = engine.CurrentWorld->CreateEntity<Shield>();
+	shield3->Transform->SetPosition(648, 700);
+	Entity* shield4 = engine.CurrentWorld->CreateEntity<Shield>();
+	shield4->Transform->SetPosition(924, 700);
+	//engine.CurrentWorld->CreateEntity<Hivemind>("Hivemind");
 
 	const float timeScale = 1.0f;
 
@@ -39,11 +49,6 @@ int main(int argc, char* args[]) {
 		const auto elapsed = std::chrono::high_resolution_clock::now() - last;
 		const unsigned long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
 		Timer::DeltaTime = timeScale * ((double)microseconds / 1000000);
-
-		// Rudimentary framerate cap
-		if (Timer::DeltaTime < minDeltaTime) {
-			continue;
-		}
 
 		last = now;
 		engine.HandleEvents();

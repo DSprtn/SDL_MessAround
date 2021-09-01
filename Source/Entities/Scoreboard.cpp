@@ -59,22 +59,22 @@ void Scoreboard::InitAllLabelsAndDisplays()
 
 	m_scoreLabel = Engine::Instance->CurrentWorld->CreateEntity<Entity>("ScoreLabel", 150, 38);
 	m_scoreLabel->Transform->SetPosition(350, 48);
-	auto label = m_scoreLabel->AddComponent<TextDisplay>(m_scoreLabel, "space_invaders.ttf", colour);
+	auto label = m_scoreLabel->AddComponent<TextDisplay>("space_invaders.ttf", colour);
 	label->SetText("SCORE < 1 >");
 
 	m_scoreDisplay = Engine::Instance->CurrentWorld->CreateEntity<Entity>("ScoreDisplay", 80, 40);
 	m_scoreDisplay->Transform->SetPosition(350, 96);
-	m_scoreText = m_scoreDisplay->AddComponent<TextDisplay>(m_scoreDisplay, "space_invaders.ttf", colour);
+	m_scoreText = m_scoreDisplay->AddComponent<TextDisplay>("space_invaders.ttf", colour);
 	m_scoreText->SetText("0000");
 
 	m_highscoreLabel = Engine::Instance->CurrentWorld->CreateEntity<Entity>("HighscoreLabel", 150, 38);
 	m_highscoreLabel->Transform->SetPosition(700, 48);
-	auto highscoreLabelText = m_highscoreLabel->AddComponent<TextDisplay>(m_highscoreLabel, "space_invaders.ttf", colour);
+	auto highscoreLabelText = m_highscoreLabel->AddComponent<TextDisplay>("space_invaders.ttf", colour);
 	highscoreLabelText->SetText("HI-SCORE");
 
 	m_highscoreDisplay = Engine::Instance->CurrentWorld->CreateEntity<Entity>("HighscoreDisplay", 80, 40);
 	m_highscoreDisplay->Transform->SetPosition(700, 96);
-	m_highscoreText = m_highscoreDisplay->AddComponent<TextDisplay>(m_highscoreDisplay, "space_invaders.ttf", colour);
+	m_highscoreText = m_highscoreDisplay->AddComponent<TextDisplay>("space_invaders.ttf", colour);
 	m_highscoreText->SetText("0000");
 }
 

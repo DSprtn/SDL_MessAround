@@ -11,8 +11,8 @@
 EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Entity(name, 64, 64)
 {
 	m_hive = hive;
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer);
-	AddComponent<Collider>(this, Transform);
+	AddComponent<RenderComponent>(Engine::Instance->Renderer);
+	AddComponent<Collider>(Transform);
 	AddTag("Enemy");
 	m_scoreForKill = 10;
 	m_type = type;
@@ -35,7 +35,7 @@ EnemyEntity::EnemyEntity(std::string name, Hivemind* hive, EnemyType type) : Ent
 			m_scoreForKill = 10;
 			break;
 	}
-	AddComponent<AnimateByDistance>(this, Transform, textures, distAnim);
+	AddComponent<AnimateByDistance>(Transform, textures, distAnim);
 }
 
 EnemyEntity::~EnemyEntity()

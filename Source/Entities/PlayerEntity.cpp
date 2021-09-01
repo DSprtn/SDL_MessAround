@@ -11,13 +11,12 @@
 #include <EnemyDestroyedParticle.h>
 
 
-PlayerEntity::PlayerEntity(std::string Name) : Entity(Name, 64, 64)
+PlayerEntity::PlayerEntity() : Entity("Player", 64, 64)
 {
-	Transform->SetPosition(400, 900);
-	AddComponent<RenderComponent>(this, Engine::Instance->Renderer, "Assets/ship.png");
-	AddComponent<SimpleMove>(this, 400);
-	AddComponent<ConstrainToWindow>(this, Engine::Instance->Window, Transform);
-	AddComponent<Collider>(this, Transform);
+	AddComponent<RenderComponent>(Engine::Instance->Renderer, "Assets/ship.png");
+	AddComponent<SimpleMove>(400);
+	AddComponent<ConstrainToWindow>(Engine::Instance->Window, Transform);
+	AddComponent<Collider>(Transform);
 
 	m_timeSinceFired = .7f;
 	m_fireDelay = .7f;
@@ -35,7 +34,7 @@ void PlayerEntity::Update()
 	}
 }
 
-void PlayerEntity::Delete() {
+void PlayerEntity::Delete() { 
 	Entity::Delete();
 	Engine::Instance->CurrentWorld->CreateEntity<EnemyDestroyedParticle>("Explosion", Transform->PositionX, Transform->PositionY, 48, 48);
 }

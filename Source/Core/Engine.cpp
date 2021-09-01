@@ -27,7 +27,7 @@ void Engine::Init()
 		CurrentWorld = new World();
 		Window = SDL_CreateWindow("SpayseInvaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 1024, SDL_WINDOW_SHOWN);
 
-		Renderer = SDL_CreateRenderer(Window, -1, 0);
+		Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_PRESENTVSYNC);
 
 		SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 		IsRunning = true;
