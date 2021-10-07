@@ -264,3 +264,7 @@ IATETerminologyProvider/IATETerminologyProvider/pluginpackage.manifest_LOCAL_178
 /libpng16-16.dll
 /SDL2_ttf.dll
 /GameData.txt
+/libwebp-7.dll
+/libtiff-5.dll
+/libjpeg-9.dll
+/libfreetype-6.dll

@@ -75,16 +75,10 @@
     <ClCompile Include="Source\Entities\Hivemind.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Entities\UFOEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Components\AnimateByDistance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entities\GameGlobals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\Damageable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\GameAssets.cpp">
@@ -164,16 +158,10 @@
     <ClInclude Include="Source\Entities\Hivemind.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Entities\UFOEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Components\AnimateByDistance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Entities\GameGlobals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\Damageable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\GameAssets.h">
@@ -191,5 +179,40 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\space_invaders.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\space_invader.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\explosion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderA1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderA2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderB1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderB2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderC1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\InvaderC2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\laser.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\shield.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
